@@ -1,0 +1,125 @@
+{
+  "author": "gdh1995@qq.com",
+  "background": {
+    "persistent": false,
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "commands": {
+    "userCustomized1": {
+      "description": "Custom shortcut 1"
+    },
+    "userCustomized2": {
+      "description": "Custom shortcut 2"
+    },
+    "userCustomized3": {
+      "description": "Custom shortcut 3"
+    },
+    "userCustomized4": {
+      "description": "Custom shortcut 4"
+    },
+    "userCustomized5": {
+      "description": "Custom shortcut 5"
+    },
+    "userCustomized6": {
+      "description": "Custom shortcut 6"
+    },
+    "userCustomized7": {
+      "description": "Custom shortcut 7"
+    },
+    "userCustomized8": {
+      "description": "Custom shortcut 8"
+    },
+    "userCustomized9": {
+      "description": "Custom shortcut 9"
+    },
+    "userCustomized10": {
+      "description": "Custom shortcut 10"
+    },
+    "userCustomized11": {
+      "description": "Custom shortcut 11"
+    },
+    "userCustomized12": {
+      "description": "Custom shortcut 12"
+    },
+    "userCustomized13": {
+      "description": "Custom shortcut 13"
+    },
+    "userCustomized14": {
+      "description": "Custom shortcut 14"
+    },
+    "userCustomized15": {
+      "description": "Custom shortcut 15"
+    },
+    "userCustomized16": {
+      "description": "Custom shortcut 16"
+    },
+    "userCustomized17": {
+      "description": "Custom shortcut 17"
+    },
+    "userCustomized18": {
+      "description": "Custom shortcut 18"
+    },
+    "userCustomized19": {
+      "description": "Custom shortcut 19"
+    },
+    "userCustomized20": {
+      "description": "Custom shortcut 20"
+    },
+    "userCustomized21": {
+      "description": "Custom shortcut 21"
+    },
+    "userCustomized22": {
+      "description": "Custom shortcut 22"
+    },
+    "userCustomized23": {
+      "description": "Custom shortcut 23"
+    },
+    "userCustomized24": {
+      "description": "Custom shortcut 24"
+    },
+    "userCustomized25": {
+      "description": "Custom shortcut 25"
+    },
+    "userCustomized26": {
+      "description": "Custom shortcut 26"
+    },
+    "userCustomized27": {
+      "description": "Custom shortcut 27"
+    },
+    "userCustomized28": {
+      "description": "Custom shortcut 28"
+    },
+    "userCustomized29": {
+      "description": "Custom shortcut 29"
+    },
+    "userCustomized30": {
+      "description": "Custom shortcut 30"
+    },
+    "userCustomized31": {
+      "description": "Custom shortcut 31"
+    },
+    "userCustomized32": {
+      "description": "Custom shortcut 32"
+    }
+  },
+  "content_security_policy": "script-src 'self' chrome-extension://hfjbmagddngcpeloejdejnfgbamkjaeg/; style-src 'self' 'unsafe-inline'; default-src 'none'",
+  "description": "A tool to provide 32 configurable shortcuts and forward them to another extension like Vimium C",
+  "homepage_url": "https://github.com/gdh1995/vimium-c-helpers",
+  "icons": {
+    "128": "icon.png"
+  },
+  "incognito": "spanning",
+  "manifest_version": 2,
+  "minimum_chrome_version": "32",
+  "name": "Shortcut Forwarding Tool",
+  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true,
+    "open_in_tab": false
+  },
+  "update_url": "https://clients2.google.com/service/update2/crx",
+  "version": "0.0.1"
+}
