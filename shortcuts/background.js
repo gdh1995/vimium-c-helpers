@@ -13,6 +13,9 @@ var keepAliveTime = +localStorage.keepAliveTime || DefaultKeepAliveTime;
 var useKeepAlive = !!localStorage.useKeepAlive;
 var aliveTimer = 0;
 chrome.commands.onCommand.addListener(function (command) {
+  if (command.lastIndexOf("userCustomized0", 0) === 0) {
+    command = command.replace("0", "");
+  }
   chrome.runtime.sendMessage(targetExtensionId, {
     handler: "shortcut", shortcut: command
   }, function () {

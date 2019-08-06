@@ -7,31 +7,31 @@
     ]
   },
   "commands": {
-    "userCustomized1": {
+    "userCustomized01": {
       "description": "Custom shortcut 1"
     },
-    "userCustomized2": {
+    "userCustomized02": {
       "description": "Custom shortcut 2"
     },
-    "userCustomized3": {
+    "userCustomized03": {
       "description": "Custom shortcut 3"
     },
-    "userCustomized4": {
+    "userCustomized04": {
       "description": "Custom shortcut 4"
     },
-    "userCustomized5": {
+    "userCustomized05": {
       "description": "Custom shortcut 5"
     },
-    "userCustomized6": {
+    "userCustomized06": {
       "description": "Custom shortcut 6"
     },
-    "userCustomized7": {
+    "userCustomized07": {
       "description": "Custom shortcut 7"
     },
-    "userCustomized8": {
+    "userCustomized08": {
       "description": "Custom shortcut 8"
     },
-    "userCustomized9": {
+    "userCustomized09": {
       "description": "Custom shortcut 9"
     },
     "userCustomized10": {
