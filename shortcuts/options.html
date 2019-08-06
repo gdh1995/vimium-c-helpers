@@ -4,7 +4,7 @@
 <title>Shortcut Forwarding Options</title>
 <meta name="supported-color-schemes" content="light dark">
 <script src="options.js" defer></script>
-<body style="margin: 14px 17px; min-width: 400px; overflow: hidden; width: 400px;">
+<body style="margin: 14px 17px; min-width: 400px; max-width: 400px; overflow: hidden; width: 400px;">
 <div>
   <label for="targetExtensionIDInput">Target extension ID:</label>
 </div>
@@ -13,6 +13,18 @@
     placeholder="Extension ID (not Firefox's extension UUID)"
     style="flex: 1 1 auto;" />
 </div>
+<details style="display: none;">
+  <summary style="margin: 10px 0;">Advanced options</summary>
+  <div>
+  </div>
+  <div style="margin: 10px 0;">
+    <label for="keepAliveTimeInput">Time to keep background process alive:</label>&nbsp;
+    <input id="keepAliveTimeInput" type="number" placeholder="e.g. 120"
+      min="0" max="9999"
+      style="text-align: center; width: 72px;" />
+    &nbsp;<span style="line-height: 25px;">seconds</span>
+  </div>
+</details>
 <div id="infoMessage"></div>
 <div id="errorMessage" style="color: red;"></div>
 <div style="text-align: right;">

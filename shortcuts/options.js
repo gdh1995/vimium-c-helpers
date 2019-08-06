@@ -2,24 +2,41 @@
 
 var OnOther = "undefined" === typeof browser || null == (browser && browser.runtime)
     || location.protocol.lastIndexOf("chrome", 0) >= 0 ? 1 /* Chrome */ : 2 /* Firefox */;
-var hasVimiumCInjected = false;
-var BG = null;
+var VimiumCId = OnOther === 1 ? "hfjbmagddngcpeloejdejnfgbamkjaeg" : "vimium-c@gdh1995.cn";
+var DefaultKeepAliveTime = 120;
 if (OnOther !== 1) {
   window.chrome = browser;
 }
 
+var hasVimiumCInjected = false;
+var BG = null;
+
 window.onload = function () {
   window.onload = null;
   BG = chrome.extension.getBackgroundPage();
+  if (BG) {
+    VimiumCId = BG.VimiumCId;
+  }
   var targetExtensionIDInput = document.querySelector("#targetExtensionIDInput");
-  var curId = targetExtensionIDInput.value = BG.targetExtensionId || BG.VimiumCId;
+  var keepAliveTimeInput = document.querySelector("#keepAliveTimeInput");
   var saveBtn = document.querySelector("#saveOptions");
+  var curId = targetExtensionIDInput.value = BG && BG.targetExtensionId || localStorage.targetExtensionId || VimiumCId;
+  keepAliveTimeInput.value = BG && BG.keepAliveTime || +localStorage.keepAliveTime
+        || DefaultKeepAliveTime;
   saveBtn.onclick = function () {
-    var newValue = targetExtensionIDInput.value;
-    if (!newValue) {
-      targetExtensionIDInput.value = newValue = BG.VimiumCId;
+    var newID = targetExtensionIDInput.value;
+    if (!newID) {
+      targetExtensionIDInput.value = newID = VimiumCId;
     }
-    localStorage.targetExtensionId = BG.targetExtensionId = newValue;
+    var newTime = keepAliveTimeInput.value;
+    if (!newID) {
+      keepAliveTimeInput.value = newTime = DefaultKeepAliveTime;
+    }
+    localStorage.keepAliveTime = newTime;
+    if (BG) {
+      BG.setTargetExtensionId(newID);
+      BG.setKeepAliveTime(newTime);
+    }
     saveBtn.textContent = "Saved";
     saveBtn.disabled = true;
     setTimeout(function () {
@@ -28,7 +45,7 @@ window.onload = function () {
         saveBtn.textContent = "Save Options";
       }
     }, 1000);
-    testTargetExtension(newValue);
+    testTargetExtension(newID);
   }
   testTargetExtension(curId);
 }
@@ -52,14 +69,14 @@ function testTargetExtension(targetId) {
     } else if (typeof response === "object" && /\bVimium C\b/.test(response.name + "")) {
       if (response.shortcuts === false) {
         showError('The target "' + response.name + '" doesn\'t support shortcuts.');
-      } else if (hasVimiumCInjected || targetId !== BG.VimiumCId) {
+      } else if (hasVimiumCInjected || targetId !== VimiumCId) {
         showError("", 'The target "' + response.name + '" accepted.');
       } else {
         hasVimiumCInjected = true;
         var script = document.createElement("script");
         script.src = chrome.runtime.getURL("/lib/injector.js").replace(location.host, response.host);
         script.addEventListener("load", function () {
-          showInfo(response.name + " connected.");
+          showInfo("Congratulations! " + response.name + " connected.");
           this.remove();
         });
         script.addEventListener("error", function (event) {
