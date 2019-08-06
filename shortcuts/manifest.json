@@ -105,8 +105,8 @@
     }
   },
   "content_security_policy": "script-src 'self' chrome-extension://hfjbmagddngcpeloejdejnfgbamkjaeg/; style-src 'self' 'unsafe-inline'; default-src 'none'",
-  "description": "A tool to provide 32 configurable shortcuts and forward them to another extension like Vimium C",
-  "homepage_url": "https://github.com/gdh1995/vimium-c-helpers",
+  "description": "Provide 32 configurable shortcuts and forward them to another extension like Vimium C",
+  "homepage_url": "https://github.com/gdh1995/vimium-c-helpers/tree/master/shortcuts",
   "icons": {
     "128": "icon128.png",
     "16": "icon16.png",
@@ -124,5 +124,5 @@
     "open_in_tab": false
   },
   "update_url": "https://clients2.google.com/service/update2/crx",
-  "version": "0.0.1"
+  "version": "0.0.2"
 }

@@ -3,10 +3,10 @@
 var OnOther = "undefined" === typeof browser || null == (browser && browser.runtime)
     || location.protocol.lastIndexOf("chrome", 0) >= 0 ? 1 /* Chrome */ : 2 /* Firefox */;
 var VimiumCId = OnOther === 1 ? "hfjbmagddngcpeloejdejnfgbamkjaeg" : "vimium-c@gdh1995.cn";
-var DefaultKeepAliveTime = 120;
 if (OnOther !== 1) {
   window.chrome = browser;
 }
+var DefaultKeepAliveTime = 120;
 
 var hasVimiumCInjected = false;
 var BG = null;
@@ -16,23 +16,33 @@ window.onload = function () {
   BG = chrome.extension.getBackgroundPage();
   if (BG) {
     VimiumCId = BG.VimiumCId;
+    DefaultKeepAliveTime = BG.DefaultKeepAliveTime;
   }
   var targetExtensionIDInput = document.querySelector("#targetExtensionIDInput");
   var keepAliveTimeInput = document.querySelector("#keepAliveTimeInput");
   var saveBtn = document.querySelector("#saveOptions");
   var curId = targetExtensionIDInput.value = BG && BG.targetExtensionId || localStorage.targetExtensionId || VimiumCId;
-  keepAliveTimeInput.value = BG && BG.keepAliveTime || +localStorage.keepAliveTime
-        || DefaultKeepAliveTime;
+  var curKeepAliveTime = BG && BG.keepAliveTime ||
+        (localStorage.keepAliveTime ? +localStorage.keepAliveTime : DefaultKeepAliveTime);
+  if (isNaN(curKeepAliveTime) || !isFinite(curKeepAliveTime) || curKeepAliveTime < 0) {
+    curKeepAliveTime = curKeepAliveTime === -1 ? 0 : DefaultKeepAliveTime;
+  }
+  keepAliveTimeInput.value  = curKeepAliveTime;
   saveBtn.onclick = function () {
     var newID = targetExtensionIDInput.value;
     if (!newID) {
       targetExtensionIDInput.value = newID = VimiumCId;
     }
-    var newTime = keepAliveTimeInput.value;
-    if (!newID) {
-      keepAliveTimeInput.value = newTime = DefaultKeepAliveTime;
+    var newTimeStr = +keepAliveTimeInput.value, newTime = newTimeStr ? +newTimeStr : DefaultKeepAliveTime;
+    if (isNaN(newTime) || !isFinite(newTime) || newTime < 0) {
+      newTime = newTime === -1 ? 0 : DefaultKeepAliveTime;
     }
-    localStorage.keepAliveTime = newTime;
+    if (newTimeStr !== "" + newTime) {
+      newTimeStr = "" + newTime;
+      keepAliveTimeInput.value = newTimeStr;
+    }
+    localStorage.targetExtensionId = newID;
+    localStorage.keepAliveTime = newTimeStr;
     if (BG) {
       BG.setTargetExtensionId(newID);
       BG.setKeepAliveTime(newTime);
@@ -46,8 +56,14 @@ window.onload = function () {
       }
     }, 1000);
     testTargetExtension(newID);
-  }
+  };
   testTargetExtension(curId);
+  window.onkeydown = function (e) {
+    if (e.ctrlKey && (e.key ? e.key === "Enter" : e.keyCode === 13)
+        && !(e.shiftKey || e.altKey || e.metaKey)) {
+      saveBtn.click();
+    }
+  };
 }
 
 function testTargetExtension(targetId) {
@@ -89,7 +105,7 @@ function testTargetExtension(targetId) {
     } else {
       showError('The target extension is not supported.');
     }
-  })
+  });
 }
 
 function showError(text, infoText) {

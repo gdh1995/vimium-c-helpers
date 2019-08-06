@@ -1,14 +1,10 @@
 Shortcut Forwarding Tool
-========
+========================
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
-[![Version 0.0.1](https://img.shields.io/badge/release-0.0.1-orange.svg
-  )](https://github.com/gdh1995/vimium-c/releases)
-**Visit Vimium C on [Chrome Web Store](
-  https://chrome.google.com/webstore/detail/vimium-c/hfjbmagddngcpeloejdejnfgbamkjaeg
-  )** /
-**[Firefox Add-ons](
-  https://addons.mozilla.org/en-US/firefox/addon/vimium-c/
+![Version 0.0.1](https://img.shields.io/badge/release-0.0.1-orange.svg)
+**Visit on [Chrome Web Store](
+  https://chrome.google.com/webstore/detail/shortcut-forwarding-tool/clnalilglegcjmlgenoppklmfppddien
   )**
 
 This web extension provides 32 global shortcut placeholders,
