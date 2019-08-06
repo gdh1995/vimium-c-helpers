@@ -9,11 +9,10 @@ if (OnOther !== 1) {
 var DefaultKeepAliveTime = 120;
 
 var hasVimiumCInjected = false;
-var BG = null;
 
 window.onload = function () {
   window.onload = null;
-  BG = chrome.extension.getBackgroundPage();
+  var BG = chrome.extension.getBackgroundPage();
   if (BG) {
     VimiumCId = BG.VimiumCId;
     DefaultKeepAliveTime = BG.DefaultKeepAliveTime;
@@ -43,10 +42,6 @@ window.onload = function () {
     }
     localStorage.targetExtensionId = newID;
     localStorage.keepAliveTime = newTimeStr;
-    if (BG) {
-      BG.setTargetExtensionId(newID);
-      BG.setKeepAliveTime(newTime);
-    }
     saveBtn.textContent = "Saved";
     saveBtn.disabled = true;
     setTimeout(function () {
@@ -55,6 +50,11 @@ window.onload = function () {
         saveBtn.textContent = "Save Options";
       }
     }, 1000);
+    var BG1 = chrome.extension.getBackgroundPage();
+    if (BG1) {
+      BG1.setTargetExtensionId(newID);
+      BG1.setKeepAliveTime(newTime);
+    }
     testTargetExtension(newID);
   };
   testTargetExtension(curId);

@@ -1,0 +1,33 @@
+{
+  "author": "gdh1995@qq.com",
+  "background": {
+    "persistent": true,
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "content_security_policy": "script-src 'self' chrome-extension://hfjbmagddngcpeloejdejnfgbamkjaeg/; style-src 'self' 'unsafe-inline'; img-src 'self' data:; default-src 'none'",
+  "description": "Take over browser's new tab settins and open another configurable URL",
+  "homepage_url": "https://github.com/gdh1995/vimium-c-helpers/tree/master/newtab",
+  "icons": {
+    "128": "icon128.png",
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png"
+  },
+  "incognito": "spanning",
+  "manifest_version": 2,
+  "minimum_chrome_version": "32",
+  "name": "NewTab Adapter",
+  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true,
+    "open_in_tab": false
+  },
+  "update_url": "https://clients2.google.com/service/update2/crx",
+  "version": "0.0.1"
+}

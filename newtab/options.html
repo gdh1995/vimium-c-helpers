@@ -6,21 +6,21 @@
 <script src="options.js" defer></script>
 <body style="margin: 0 17px 14px 17px; min-width: 400px; max-width: 400px; overflow: hidden; width: 400px;">
 <div>
-  <label for="targetExtensionIDInput">Target extension ID:</label>
+  <label for="newTabUrlInput">Target new tab URL:</label>
 </div>
 <div style="display: flex; margin: 10px 0;">
-  <input id="targetExtensionIDInput" type="text" spellcheck="false"
-    placeholder="Extension ID (not Firefox's extension UUID)"
+  <input id="newTabUrlInput" type="text" spellcheck="false" placeholder="like https://www.bing.com"
     style="flex: 1 1 auto; padding-left: 4px;" />
 </div>
-<details style="display: none;">
+<div style="margin: 10px 0;">
+  <input id="focusNewTabContentInput" type="checkbox" value="true" />
+  <label for="focusNewTabContentInput">Focus web page when creating a new tab.</label>
+</div>
+<details>
   <summary style="margin: 10px 0;">Advanced options</summary>
   <div style="margin: 10px 0;">
-    <label for="keepAliveTimeInput">Time to keep background process alive:</label>&nbsp;
-    <input id="keepAliveTimeInput" type="number" placeholder="e.g. 120"
-      min="0" max="9999"
-      style="text-align: center; width: 72px;" />
-    &nbsp;<span style="line-height: 25px;">seconds</span>
+    <input id="interactWithVimiumCInput" type="checkbox" value="true" />
+    <label for="interactWithVimiumCInput">Inject Vimium C into this extension's newtab.html.</label>
   </div>
 </details>
 <div id="infoMessage"></div>
