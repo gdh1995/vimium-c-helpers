@@ -19,9 +19,10 @@ isRedirecting_ ? useLocation_ ? (document.location.href = url_) : chrome_.tabs[f
     loadVimiumC_();
     return error;
   }
-  focusContent_ ? interactWithVimiumC_ ? chrome_.runtime.connect(localStorage.vimiumCId ||
+  focusContent_ && chrome.tabs.getCurrent(function (tab) { tab && tab.id && chrome.tabs.remove(tab.id); });
+  focusContent_ && interactWithVimiumC_ && chrome_.runtime.connect(localStorage.vimiumCId ||
     (isNotChrome_ ? "vimium-c@gdh1995.cn" : "hfjbmagddngcpeloejdejnfgbamkjaeg"), { name: "vimium-c.999" }
-  ) : chrome.tabs.getCurrent(function (tab) { tab && tab.id && chrome.tabs.remove(tab.id); }) : 0;
+  );
 } : void 0) : loadVimiumC_();
 
 !isNotChrome_ && focusContent_ && isRedirecting_ && close();
