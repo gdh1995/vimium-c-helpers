@@ -28,7 +28,7 @@ window.onload = function () {
     var rawNewUrl = newTabUrlInput.value, newUrl = rawNewUrl;
     if (!newUrl) {
       newUrl = DefaultNewTab;
-    } else if (!/^[a-z\-]+:/.test(newUrl)) {
+    } else if (!/^[a-z\-]+:(?!\d{1,5}$)/.test(newUrl)) {
       if (/^\/?\w+\.html\b/.test(newUrl)) {
         newUrl = newUrl.slice(newUrl[0] === "/" ? 1 : 0);
       } else if ((newUrl.indexOf("/") < 0 || newUrl.indexOf("/") === newUrl.length - 1)
