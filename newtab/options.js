@@ -93,7 +93,7 @@ function testExtensionInjection(doInject) {
       var script = document.createElement("script");
       script.src = response.injector
           || chrome.runtime.getURL("/lib/injector.js").replace(location.host, response.host);
-      script.dataset.extensionId = targetId;
+      script.dataset.extensionId = targetExtensionId;
       script.addEventListener("load", function () {
         showInfo("Congratulations! " + name + " is ready.");
         localStorage.targetExtensionInjector = this.src;
