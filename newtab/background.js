@@ -5,34 +5,34 @@ var OnOther = "undefined" === typeof browser || null == (browser && browser.runt
 var VimiumCId = OnOther === 1 ? "hfjbmagddngcpeloejdejnfgbamkjaeg" : "vimium-c@gdh1995.cn";
 if (OnOther !== 1) {
   window.chrome = browser;
-  VimiumCId = localStorage.vimiumCId || vimiumCId;
 }
 var DefaultNewTab = "newtab.html";
 var DefaultFocusNewTabContent = "1";
-var DefaultInteractWithVimiumC = "1";
+var DefaultInteractWithExtension = "1";
 
-var interactWithVimiumC = (localStorage.interactWithVimiumC || DefaultInteractWithVimiumC) !== "0";
+var interactWithExtension = (localStorage.interactWithExtension || DefaultInteractWithExtension) !== "0";
+var targetExtensionId = localStorage.targetExtensionId || VimiumCId;
 
 chrome.runtime.onMessageExternal.addListener(function (message, sender, sendResponse) {
-  if (sender.id !== VimiumCId || !interactWithVimiumC) { // refuse
+  if (!interactWithExtension || sender.id !== targetExtensionId) { // refuse
     sendResponse(false);
     return;
   }
   if (message.handler === "setup") {
     localStorage.newTabUrl = message.newTabUrl || DefaultNewTab;
     localStorage.focusNewTabContent = message.focusNewTabContent ? "1" : "0";
-    if (!localStorage.vimiumCInjector) {
-      localStorage.vimiumCInjector = chrome.runtime.getURL("/lib/injector.js"
-          ).replace(location.host, OnOther !== 1 ? message.vimiumCHost : VimiumCId);
+    if (!localStorage.targetExtensionInjector) {
+      localStorage.targetExtensionInjector = chrome.runtime.getURL("/lib/injector.js"
+          ).replace(location.host, message.injectionHost || targetExtensionId);
     }
     sendResponse(true);
   } else {
-    sendResponse("pong");
+    sendResponse("pong:NewTabAdapter");
   }
 });
 
-window.setInteractWithVimiumC = function (newInteract) {
-  interactWithVimiumC = newInteract;
+window.setInteractWithExtension = function (newInteract) {
+  interactWithExtension = newInteract;
 };
 
 console.log("This background process is helpful for faster opening and less CPU cost,\n\

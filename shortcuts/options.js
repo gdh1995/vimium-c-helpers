@@ -8,7 +8,7 @@ if (OnOther !== 1) {
 }
 var DefaultKeepAliveTime = 120;
 
-var hasVimiumCInjected = false;
+var hasExtensionInjected = false;
 
 window.onload = function () {
   window.onload = null;
@@ -20,7 +20,8 @@ window.onload = function () {
   var targetExtensionIDInput = document.querySelector("#targetExtensionIDInput");
   var keepAliveTimeInput = document.querySelector("#keepAliveTimeInput");
   var saveBtn = document.querySelector("#saveOptions");
-  var curId = targetExtensionIDInput.value = BG && BG.targetExtensionId || localStorage.targetExtensionId || VimiumCId;
+  var curId = targetExtensionIDInput.value = BG && BG.targetExtensionId
+      || localStorage.targetExtensionId || VimiumCId;
   var curKeepAliveTime = BG && BG.keepAliveTime ||
         (localStorage.keepAliveTime ? +localStorage.keepAliveTime : DefaultKeepAliveTime);
   if (isNaN(curKeepAliveTime) || !isFinite(curKeepAliveTime) || curKeepAliveTime < 0) {
@@ -82,15 +83,15 @@ function testTargetExtension(targetId) {
     }
     if (response === false) {
       showError('Please add "' + chrome.runtime.id + '" to target extension\'s whitelist');
-    } else if (typeof response === "object" && /\bVimium C\b/.test(response.name + "")) {
+    } else if (typeof response === "object" && response.name && response.shortcuts != null) {
       if (response.shortcuts === false) {
         showError('The target "' + response.name + '" doesn\'t support shortcuts.');
-      } else if (hasVimiumCInjected || targetId !== VimiumCId) {
-        showError("", 'The target "' + response.name + '" accepted.');
-      } else {
-        hasVimiumCInjected = true;
+      } else if (hasExtensionInjected || (response.injector != null ? response.injector : targetId === VimiumCId)) {
+        hasExtensionInjected = true;
         var script = document.createElement("script");
-        script.src = chrome.runtime.getURL("/lib/injector.js").replace(location.host, response.host);
+        script.src = response.injector
+            || chrome.runtime.getURL("/lib/injector.js").replace(location.host, response.host);
+        script.dataset.extensionId = targetId;
         script.addEventListener("load", function () {
           showInfo("Congratulations! " + response.name + " connected.");
           this.remove();
@@ -101,6 +102,8 @@ function testTargetExtension(targetId) {
         });
         showError("");
         document.head.appendChild(script);
+      } else {
+        showError("", 'The target "' + response.name + '" accepted.');
       }
     } else {
       showError('The target extension is not supported.');
@@ -109,10 +112,16 @@ function testTargetExtension(targetId) {
 }
 
 function showError(text, infoText) {
-  document.querySelector("#errorMessage").textContent = text;
+  setText(document.querySelector("#errorMessage"), text);
   showInfo(infoText || "");
 }
 
 function showInfo(text) {
-  document.querySelector("#infoMessage").textContent = text;
+  setText(document.querySelector("#infoMessage"), text);
+}
+
+function setText(element, text) {
+  if (element.textContent !== text) {
+    element.textContent = text;
+  }
 }

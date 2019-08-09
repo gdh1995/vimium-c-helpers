@@ -7,7 +7,7 @@ NewTab Adapter
 This web extension takes over your browser's new tab settings,
 and it can move focus of a new tab from address bar to page content.
 
-This extension follows Vimium C's new tab settings by default,
+This extension runs Vimium C's content scripts on its newtab page by default,
 while this feature can be disabled by an advanced option.
 
 # Release Notes

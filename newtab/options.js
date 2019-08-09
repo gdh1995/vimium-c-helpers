@@ -5,25 +5,25 @@ var OnOther = "undefined" === typeof browser || null == (browser && browser.runt
 var VimiumCId = OnOther === 1 ? "hfjbmagddngcpeloejdejnfgbamkjaeg" : "vimium-c@gdh1995.cn";
 if (OnOther !== 1) {
   window.chrome = browser;
-  VimiumCId = localStorage.vimiumCId || vimiumCId;
 }
 var DefaultNewTab = "newtab.html";
 var DefaultFocusNewTabContent = "1";
-var DefaultInteractWithVimiumC = "1";
+var DefaultInteractWithExtension = "1";
 
-var hasVimiumCInjected = false;
+var targetExtensionId = localStorage.targetExtensionId || VimiumCId;
+var hasExtensionInjected = false;
 
 window.onload = function () {
   window.onload = null;
   var newTabUrlInput = document.querySelector("#newTabUrlInput");
   var focusNewTabContentInput = document.querySelector("#focusNewTabContentInput");
-  var interactWithVimiumCInput = document.querySelector("#interactWithVimiumCInput");
+  var interactWithExtensionInput = document.querySelector("#interactWithExtensionInput");
   var saveBtn = document.querySelector("#saveOptions");
-  var str = localStorage.interactWithVimiumC || DefaultInteractWithVimiumC;
+  var str = localStorage.interactWithExtension || DefaultInteractWithExtension;
   newTabUrlInput.value = localStorage.newTabUrl || DefaultNewTab;
   focusNewTabContentInput.checked = str !== "0" && str !== "false";
   str = localStorage.focusNewTabContent || DefaultFocusNewTabContent;
-  var curInteract = interactWithVimiumCInput.checked = str !== "0" && str !== "false";
+  var curInteract = interactWithExtensionInput.checked = str !== "0" && str !== "false";
   saveBtn.onclick = function () {
     var rawNewUrl = newTabUrlInput.value, newUrl = rawNewUrl;
     if (!newUrl) {
@@ -37,10 +37,10 @@ window.onload = function () {
       }
     }
     var newFocusContent = focusNewTabContentInput.checked;
-    var newInteract = interactWithVimiumCInput.checked;
+    var newInteract = interactWithExtensionInput.checked;
     localStorage.newTabUrl = newUrl;
     localStorage.focusNewTabContent = newFocusContent ? "1" : "0";
-    localStorage.interactWithVimiumC = newInteract ? "1" : "0";
+    localStorage.interactWithExtension = newInteract ? "1" : "0";
     if (newUrl !== rawNewUrl) {
       newTabUrlInput.value = newUrl;
     }
@@ -54,11 +54,11 @@ window.onload = function () {
     }, 1000);
     var BG = chrome.extension.getBackgroundPage();
     if (BG) {
-      BG.setInteractWithVimiumC(newInteract);
+      BG.setInteractWithExtension(newInteract);
     }
-    testVimiumCInjection(newInteract);
+    testExtensionInjection(newInteract);
   };
-  testVimiumCInjection(curInteract);
+  testExtensionInjection(curInteract);
   window.onkeydown = function (e) {
     if (e.ctrlKey && (e.key ? e.key === "Enter" : e.keyCode === 13)
         && !(e.shiftKey || e.altKey || e.metaKey)) {
@@ -67,9 +67,9 @@ window.onload = function () {
   };
 }
 
-function testVimiumCInjection(doInject) {
-  if (hasVimiumCInjected || !doInject) { return; }
-  chrome.runtime.sendMessage(VimiumCId, {
+function testExtensionInjection(doInject) {
+  if (hasExtensionInjected || !doInject) { return; }
+  chrome.runtime.sendMessage(targetExtensionId, {
     handler: "id"
   }, function (response) {
     var error = chrome.runtime.lastError;
@@ -77,39 +77,54 @@ function testVimiumCInjection(doInject) {
       var msg = error.message || error;
       msg = typeof msg === "object" ? JSON.stringify(msg) : msg + "";
       if (msg.indexOf("establish connection")) {
-        msg = 'Can not connect to the extension "Vimium C".';
+        var str1 = targetExtensionId !== VimiumCId ? targetExtensionId : "Vimium C";
+        msg = 'Can not connect to the extension "' + str1 + '".';
       }
       showError(msg);
       return error;
     }
+    var name = response && response.name ? response.name + "" : "";
     if (response === false) {
-      showError('Please add "' + chrome.runtime.id + '" to Vimium C\'s "Whitelist of otherextension IDs"');
-    } else if (typeof response === "object" && /\bVimium C\b/.test(response.name + "")) {
-      hasVimiumCInjected = true;
+      var str2 = targetExtensionId !== VimiumCId ? "target extension" : "Vimium C";
+      showError('Please add "' + chrome.runtime.id + '" to ' + str2 + "'s whitelist");
+    } else if (typeof response === "object" && name
+        && (response.injector != null ? response.injector : targetExtensionId === VimiumCId)) {
+      hasExtensionInjected = true;
       var script = document.createElement("script");
-      script.src = chrome.runtime.getURL("/lib/injector.js").replace(location.host, response.host);
+      script.src = response.injector
+          || chrome.runtime.getURL("/lib/injector.js").replace(location.host, response.host);
+      script.dataset.extensionId = targetId;
       script.addEventListener("load", function () {
-        showInfo("Congratulations! " + response.name + " is ready.");
-        localStorage.vimiumCInjector = this.src;
+        showInfo("Congratulations! " + name + " is ready.");
+        localStorage.targetExtensionInjector = this.src;
         this.remove();
       });
       script.addEventListener("error", function (event) {
-        showInfo('The extension "' + response.name + '" accepted but injection failed.');
+        showInfo('The extension "' + name + '" accepted but injection failed.');
         event.preventDefault();
       });
       showError("");
       document.head.appendChild(script);
     } else {
-      showError("The target extension " + (response.name || "(unknown name)") + " is not supported.");
+      showError("The target extension " + (name || targetExtensionId) + " is not supported.");
+    }
+    if (name) {
+      setText(document.querySelector("#targetExtensionName"), name);
     }
   });
 }
 
 function showError(text, infoText) {
-  document.querySelector("#errorMessage").textContent = text;
+  setText(document.querySelector("#errorMessage"), text);
   showInfo(infoText || "");
 }
 
 function showInfo(text) {
-  document.querySelector("#infoMessage").textContent = text;
+  setText(document.querySelector("#infoMessage"), text);
+}
+
+function setText(element, text) {
+  if (element.textContent !== text) {
+    element.textContent = text;
+  }
 }
