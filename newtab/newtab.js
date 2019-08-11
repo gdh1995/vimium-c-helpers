@@ -4,7 +4,7 @@ focusContent_ = "0" !== localStorage.focusNewTabContent, url_ = localStorage.new
 isRedirecting_ = url_ !== location.href && url_.replace("/", "") !== location.pathname.replace("/", ""),
 useLocation_ = isRedirecting_ && !focusContent_ && /^(file|ftp|https?):/i.test(url_),
 interactWithExtension_ = localStorage.interactWithExtension !== "0"  && !!localStorage.targetExtensionInjector,
-loadExtension_ = function () { if (interactWithExtension_) { return; }
+loadExtension_ = function () { if (!interactWithExtension_) { return; }
   var script = document.createElement("script");
   script.src = localStorage.targetExtensionInjector;
   document.head.appendChild(script);
