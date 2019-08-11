@@ -114,6 +114,7 @@
     "48": "icon48.png"
   },
   "incognito": "spanning",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6S8kOUOcgoifCLqzFGS2N04Gg/dEvne9vnQ8Le4cRXzJ1K4S2yHHKxumECHLVLK4rFvYbl84XrHk+Te9S7zc7q85watdrlnSiplyPUTeJgeHPUC9Ts4Fd69O4VDdM5xyB70l+UIszKXmoHe/OjFMJ9MC6BcvLHz4kN73jC8cstH/h1qwmYXFIVCUqyCOaXrq4eAEG9R27Oq7Rd57CYwTySUDBLhvBT1+KgT8x48I8Ej6clLhoPVBuq4wXy0gpVtqCop4q4Hs52dc1t8fErIdFHFPLZe5S66OguFi6+/LTIHGI5zldHPjpV2ai/uKk8SE60WRqHB9QSBwsW/fLbxIWwIDAQAB",
   "manifest_version": 2,
   "minimum_chrome_version": "32",
   "name": "Shortcut Forwarding Tool",

@@ -1,0 +1,9 @@
+*.crx
+*.gz
+*.pem
+*.tar
+*.tgz
+*.xpi
+*.zip
+*~
+~*
