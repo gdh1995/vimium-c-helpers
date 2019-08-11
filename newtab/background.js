@@ -13,6 +13,15 @@ var DefaultInteractWithExtension = "1";
 var interactWithExtension = (localStorage.interactWithExtension || DefaultInteractWithExtension) !== "0";
 var targetExtensionId = localStorage.targetExtensionId || VimiumCId;
 
+var firstInstall = localStorage.hasInstalled !== "1";
+if (firstInstall) {
+  setTimeout(function() {
+    localStorage.hasInstalled = "1";
+    var open = chrome.runtime.openOptionsPage;
+    open ? open() : chrome.tabs.create({ url: chrome.runtime.getURL("options.html") });
+  }, 200);
+}
+
 chrome.runtime.onMessageExternal.addListener(function (message, sender, sendResponse) {
   if (!interactWithExtension || sender.id !== targetExtensionId) { // refuse
     sendResponse(false);

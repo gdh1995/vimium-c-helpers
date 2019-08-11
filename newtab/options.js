@@ -26,7 +26,12 @@ window.onload = function () {
   var curInteract = interactWithExtensionInput.checked = str !== "0" && str !== "false";
   saveBtn.onclick = function () {
     var rawNewUrl = newTabUrlInput.value, newUrl = rawNewUrl;
-    if (!newUrl) {
+    var hasError = false;
+    if (!newUrl || /^(?!http|ftp)[a-z\-]+:\/?\/?newtab\b\/?/i.test(newUrl)) {
+      if (newUrl) {
+        hasError = true;
+        showError("Should not specify a standard new tab URL here. Otherwise a new tab would reload itself endlessly");
+      }
       newUrl = DefaultNewTab;
     } else if (!/^[a-z\-]+:(?!\d{1,5}$)/.test(newUrl)) {
       if (/^\/?\w+\.html\b/.test(newUrl)) {
@@ -56,7 +61,9 @@ window.onload = function () {
     if (BG) {
       BG.setInteractWithExtension(newInteract);
     }
-    testExtensionInjection(newInteract);
+    if (!hasError) {
+      testExtensionInjection(newInteract);
+    }
   };
   testExtensionInjection(curInteract);
   window.onkeydown = function (e) {

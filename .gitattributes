@@ -1,0 +1,13 @@
+* crlf=input
+*.bmp binary
+*.crx binary
+*.enc binary
+*.gif binary
+*.ico binary
+*.jpeg binary
+*.jpg binary
+*.png binary
+*.xpi binary
+*.js linguist-detectable=false linguist-language=JavaScript
+*.json linguist-language=jsonc
+*.sh linguist-detectable=false linguist-language=Shell
