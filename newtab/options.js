@@ -12,14 +12,20 @@ var DefaultInteractWithExtension = "1";
 
 var targetExtensionId = localStorage.targetExtensionId || VimiumCId;
 var hasExtensionInjected = false;
+var $ = document.querySelector.bind(document);
 
 window.onload = function () {
   window.onload = null;
-  var newTabUrlInput = document.querySelector("#newTabUrlInput");
-  var focusNewTabContentInput = document.querySelector("#focusNewTabContentInput");
-  var interactWithExtensionInput = document.querySelector("#interactWithExtensionInput");
-  var saveBtn = document.querySelector("#saveOptions");
+  var newTabUrlInput = $("#newTabUrlInput");
+  var focusNewTabContentInput = $("#focusNewTabContentInput");
+  var interactWithExtensionInput = $("#interactWithExtensionInput");
+  var saveBtn = $("#saveOptions");
   var str = localStorage.interactWithExtension || DefaultInteractWithExtension;
+  if (OnOther === 2) {
+    var el1 = $("#urlExample");
+    el1.textContent = "https://www.bing.com/";
+    el1.style.textDecoration = "";
+  }
   newTabUrlInput.value = localStorage.newTabUrl || DefaultNewTab;
   focusNewTabContentInput.checked = str !== "0" && str !== "false";
   str = localStorage.focusNewTabContent || DefaultFocusNewTabContent;
@@ -27,7 +33,8 @@ window.onload = function () {
   saveBtn.onclick = function () {
     var rawNewUrl = newTabUrlInput.value, newUrl = rawNewUrl;
     var hasError = false;
-    if (!newUrl || /^(?!http|ftp)[a-z\-]+:\/?\/?newtab\b\/?/i.test(newUrl)) {
+    if (!newUrl || /^(?!http|ftp)[a-z\-]+:\/?\/?(?:newtab|home)\b(?!\.html)\/?/i.test(newUrl)
+        || OnOther === 2 && /^file:/i.test(newUrl)) {
       if (newUrl) {
         hasError = true;
         showError("Should not specify a standard new tab URL here. Otherwise a new tab would reload itself endlessly");
@@ -93,7 +100,7 @@ function testExtensionInjection(doInject) {
     var name = response && response.name ? response.name + "" : "";
     if (response === false) {
       var str2 = targetExtensionId !== VimiumCId ? "target extension" : "Vimium C";
-      showError('Please add "' + chrome.runtime.id + '" to ' + str2 + "'s whitelist");
+      showError('Please add this extension ID to ' + str2 + "'s whitelist", '', chrome.runtime.id);
     } else if (typeof response === "object" && name
         && (response.injector != null ? response.injector : targetExtensionId === VimiumCId)) {
       hasExtensionInjected = true;
@@ -116,18 +123,25 @@ function testExtensionInjection(doInject) {
       showError("The target extension " + (name || targetExtensionId) + " is not supported.");
     }
     if (name) {
-      setText(document.querySelector("#targetExtensionName"), name);
+      setText($("#targetExtensionName"), name);
     }
   });
 }
 
-function showError(text, infoText) {
-  setText(document.querySelector("#errorMessage"), text);
+function showError(text, infoText, tailText) {
+  var el = $("#errorMessage")
+    , msgEditBox = el.nextElementSibling, msgEdit = msgEditBox.firstElementChild;
+  setText(el, text);
   showInfo(infoText || "");
+  tailText = tailText || "";
+  if (msgEdit.value !== tailText) {
+    msgEdit.value = tailText;
+  }
+  msgEditBox.style.display = tailText ? "flex" : "none";
 }
 
 function showInfo(text) {
-  setText(document.querySelector("#infoMessage"), text);
+  setText($("#infoMessage"), text);
 }
 
 function setText(element, text) {

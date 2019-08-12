@@ -5,6 +5,9 @@ NewTab Adapter
 ![Version 0.0.1](https://img.shields.io/badge/release-0.0.1-orange.svg)
 **Visit on [Chrome Web Store](
   https://chrome.google.com/webstore/detail/newtab-adapter/cglpcedifkgalfdklahhcchnjepcckfn
+  )** /
+**[Firefox Add-ons](
+  https://addons.mozilla.org/en-US/firefox/addon/newtab-adapter/
   )**
 
 This web extension takes over your browser's new tab settings,

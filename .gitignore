@@ -7,3 +7,6 @@
 *.zip
 *~
 ~*
+build*/
+dist*/
+dest*/

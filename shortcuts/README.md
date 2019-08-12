@@ -5,6 +5,9 @@ Shortcut Forwarding Tool
 ![Version 0.0.3](https://img.shields.io/badge/release-0.0.3-orange.svg)
 **Visit on [Chrome Web Store](
   https://chrome.google.com/webstore/detail/shortcut-forwarding-tool/clnalilglegcjmlgenoppklmfppddien
+  )** /
+**[Firefox Add-ons](
+  https://addons.mozilla.org/en-US/firefox/addon/shortcut-forwarding-tool/
   )**
 
 This web extension provides 32 global shortcut placeholders,

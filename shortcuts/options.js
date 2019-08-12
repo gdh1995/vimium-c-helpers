@@ -9,6 +9,7 @@ if (OnOther !== 1) {
 var DefaultKeepAliveTime = 120;
 
 var hasExtensionInjected = false;
+var $ = document.querySelector.bind(document);
 
 window.onload = function () {
   window.onload = null;
@@ -17,9 +18,9 @@ window.onload = function () {
     VimiumCId = BG.VimiumCId;
     DefaultKeepAliveTime = BG.DefaultKeepAliveTime;
   }
-  var targetExtensionIDInput = document.querySelector("#targetExtensionIDInput");
-  var keepAliveTimeInput = document.querySelector("#keepAliveTimeInput");
-  var saveBtn = document.querySelector("#saveOptions");
+  var targetExtensionIDInput = $("#targetExtensionIDInput");
+  var keepAliveTimeInput = $("#keepAliveTimeInput");
+  var saveBtn = $("#saveOptions");
   var curId = targetExtensionIDInput.value = BG && BG.targetExtensionId
       || localStorage.targetExtensionId || VimiumCId;
   var curKeepAliveTime = BG && BG.keepAliveTime ||
@@ -82,7 +83,7 @@ function testTargetExtension(targetId) {
       return error;
     }
     if (response === false) {
-      showError('Please add "' + chrome.runtime.id + '" to target extension\'s whitelist');
+      showError('Please add this extension ID to target extension\'s whitelist:', '', chrome.runtime.id);
     } else if (typeof response === "object" && response.name && response.shortcuts != null) {
       if (response.shortcuts === false) {
         showError('The target "' + response.name + '" doesn\'t support shortcuts.');
@@ -111,13 +112,20 @@ function testTargetExtension(targetId) {
   });
 }
 
-function showError(text, infoText) {
-  setText(document.querySelector("#errorMessage"), text);
+function showError(text, infoText, tailText) {
+  var el = $("#errorMessage")
+    , msgEditBox = el.nextElementSibling, msgEdit = msgEditBox.firstElementChild;
+  setText(el, text);
   showInfo(infoText || "");
+  tailText = tailText || "";
+  if (msgEdit.value !== tailText) {
+    msgEdit.value = tailText;
+  }
+  msgEditBox.style.display = tailText ? "flex" : "none";
 }
 
 function showInfo(text) {
-  setText(document.querySelector("#infoMessage"), text);
+  setText($("#infoMessage"), text);
 }
 
 function setText(element, text) {
