@@ -2,7 +2,7 @@ NewTab Adapter
 ==============
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
-![Version 0.0.1](https://img.shields.io/badge/release-0.0.1-orange.svg)
+![Version 0.1.0](https://img.shields.io/badge/release-0.1.0-orange.svg)
 **Visit on [Chrome Web Store](
   https://chrome.google.com/webstore/detail/newtab-adapter/cglpcedifkgalfdklahhcchnjepcckfn
   )** /
@@ -18,8 +18,8 @@ while this feature can be disabled by an advanced option.
 
 # Release Notes
 
-0.0.1:
-* a base version
+0.1.0:
+* a base version, fixing bugs and adding a Vomnibar page
 
 # Related Project
 
