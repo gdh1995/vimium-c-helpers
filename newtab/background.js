@@ -14,13 +14,32 @@ var interactWithExtension = (localStorage.interactWithExtension || DefaultIntera
 var targetExtensionId = localStorage.targetExtensionId || VimiumCId;
 
 var firstInstall = localStorage.hasInstalled !== "1";
-if (firstInstall) {
-  setTimeout(function() {
+setTimeout(function() {
+  if (firstInstall) {
     localStorage.hasInstalled = "1";
     var open = chrome.runtime.openOptionsPage;
     open ? open() : chrome.tabs.create({ url: chrome.runtime.getURL("options.html") });
-  }, 200);
-}
+  } else if (interactWithExtension && targetExtensionId) {
+    var curNewTabUrl = OnOther === 1 ? localStorage.newTabUrl : "";
+    if (curNewTabUrl && curNewTabUrl.indexOf(":") >= 0 && curNewTabUrl.lastIndexOf(location.origin, 0) < 0) {
+      return;
+    }
+    chrome.runtime.sendMessage(targetExtensionId, {
+      handler: "id"
+    }, function (response) {
+      var injectable = response && response.name
+          && (response != null ? !!response.injector : targetExtensionId === VimiumCId);
+      var newInjector = injectable
+          ? response.injector || chrome.runtime.getURL("/lib/injector.js").replace(location.host, response.host)
+          : "";
+      if (localStorage.targetExtensionInjector !== newInjector) {
+        console.log('do update');
+        localStorage.targetExtensionInjector = newInjector;
+      }
+      return chrome.runtime.lastError;
+    });
+  }
+}, firstInstall ? 200 : 1000);
 
 chrome.runtime.onMessageExternal.addListener(function (message, sender, sendResponse) {
   if (!interactWithExtension || sender.id !== targetExtensionId) { // refuse

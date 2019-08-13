@@ -20,16 +20,17 @@ window.onload = function () {
   var focusNewTabContentInput = $("#focusNewTabContentInput");
   var interactWithExtensionInput = $("#interactWithExtensionInput");
   var saveBtn = $("#saveOptions");
-  var str = localStorage.interactWithExtension || DefaultInteractWithExtension;
+  var str, curInteract;
   if (OnOther === 2) {
     var el1 = $("#urlExample");
     el1.textContent = "https://www.bing.com/";
     el1.style.textDecoration = "";
   }
+  str = localStorage.interactWithExtension || DefaultInteractWithExtension;
   newTabUrlInput.value = localStorage.newTabUrl || DefaultNewTab;
-  focusNewTabContentInput.checked = str !== "0" && str !== "false";
+  curInteract = interactWithExtensionInput.checked = str !== "0" && str !== "false";
   str = localStorage.focusNewTabContent || DefaultFocusNewTabContent;
-  var curInteract = interactWithExtensionInput.checked = str !== "0" && str !== "false";
+  focusNewTabContentInput.checked = str !== "0" && str !== "false";
   saveBtn.onclick = function () {
     var rawNewUrl = newTabUrlInput.value, newUrl = rawNewUrl;
     var hasError = false;
@@ -82,7 +83,10 @@ window.onload = function () {
 }
 
 function testExtensionInjection(doInject) {
-  if (hasExtensionInjected || !doInject) { return; }
+  if (hasExtensionInjected || !doInject) {
+    hasExtensionInjected && setTimeout(recheckNewTabUrl, 0, localStorage.targetExtensionInjector);
+    return;
+  }
   chrome.runtime.sendMessage(targetExtensionId, {
     handler: "id"
   }, function (response) {
@@ -111,7 +115,7 @@ function testExtensionInjection(doInject) {
       script.addEventListener("load", function () {
         showInfo("Congratulations! " + name + " is ready.");
         localStorage.targetExtensionInjector = this.src;
-        this.remove();
+        recheckNewTabUrl(this.src);
       });
       script.addEventListener("error", function (event) {
         showInfo('The extension "' + name + '" accepted but injection failed.');
@@ -126,6 +130,21 @@ function testExtensionInjection(doInject) {
       setText($("#targetExtensionName"), name);
     }
   });
+}
+
+function recheckNewTabUrl(srcUrl) {
+  var curNewTabUrl = localStorage.newTabUrl || "";
+  if (/^vimium:\/\//i.test(curNewTabUrl)) {
+    var match = /^[^\/]+\/\/[^\/]+\//.exec(srcUrl);
+    var convertedUrl = match[0] + "pages/" + curNewTabUrl.slice(9);
+    if (convertedUrl.indexOf(".html") < 0) {
+      convertedUrl += ".html";
+    }
+    setTimeout(function() {
+      $("#newTabUrlInput").value = convertedUrl;
+      $("#saveOptions").onclick();
+    }, 0);
+  }
 }
 
 function showError(text, infoText, tailText) {
