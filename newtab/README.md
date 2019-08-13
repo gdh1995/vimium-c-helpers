@@ -42,5 +42,3 @@ See the [MIT LICENSE](LICENSE.txt) for details.
   Copyright (c) 2014-2019 Dahan Gong, Phil Crosby, Ilya Sukhar.
   [MIT-licensed](https://github.com/philc/vimium/blob/master/MIT-LICENSE.txt).
 * The Orange in icon is from https://pixabay.com/vectors/orange-fruit-mandarin-citrus-fruit-158258/
-* The arrow at bottom right corner in icon is based on an icon designed by dAKirby309
-    from http://www.iconarchive.com/show/simply-styled-icons-by-dakirby309/Shortcuts-icon.html

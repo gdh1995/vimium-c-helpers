@@ -30,10 +30,8 @@ chrome.runtime.onMessageExternal.addListener(function (message, sender, sendResp
   if (message.handler === "setup") {
     localStorage.newTabUrl = message.newTabUrl || DefaultNewTab;
     localStorage.focusNewTabContent = message.focusNewTabContent ? "1" : "0";
-    if (!localStorage.targetExtensionInjector) {
-      localStorage.targetExtensionInjector = chrome.runtime.getURL("/lib/injector.js"
-          ).replace(location.host, message.injectionHost || targetExtensionId);
-    }
+    localStorage.targetExtensionInjector = chrome.runtime.getURL("/lib/injector.js"
+        ).replace(location.host, message.injectionHost || targetExtensionId);
     sendResponse(true);
   } else {
     sendResponse("pong:NewTabAdapter");
