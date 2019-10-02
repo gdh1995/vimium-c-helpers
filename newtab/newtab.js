@@ -4,9 +4,11 @@ focusContent_ = "0" !== localStorage.focusNewTabContent, url_ = localStorage.new
 isRedirecting_ = url_ !== location.href && url_.replace("/", "") !== location.pathname.replace("/", ""),
 useLocation_ = isRedirecting_ && !focusContent_ && /^(file|ftp|https?):/i.test(url_),
 extensionInjector_ = localStorage.interactWithExtension !== "0"  && localStorage.targetExtensionInjector,
+extId = localStorage.targetExtensionId || (isNotChrome_ ? "vimium-c@gdh1995.cn" : "hfjbmagddngcpeloejdejnfgbamkjaeg"),
 loadExtension_ = function () { if (!extensionInjector_) { return; }
   var script = document.createElement("script");
   script.src = extensionInjector_;
+  script.dataset.extensionId = extId;
   document.head.appendChild(script);
 }, chrome_ = window.chrome || browser;
 
@@ -20,8 +22,7 @@ isRedirecting_ ? useLocation_ ? (document.location.href = url_) : chrome_.tabs[f
     return error;
   }
   focusContent_ && chrome.tabs.getCurrent(function (tab) { tab && tab.id && chrome.tabs.remove(tab.id); });
-  focusContent_ && extensionInjector_ && chrome_.runtime.connect(localStorage.targetExtensionId ||
-    (isNotChrome_ ? "vimium-c@gdh1995.cn" : "hfjbmagddngcpeloejdejnfgbamkjaeg"), { name: "vimium-c.999" }
+  focusContent_ && extensionInjector_ && chrome_.runtime.connect(extId, { name: "vimium-c.999" }
   );
 } : void 0) : loadExtension_();
 
