@@ -84,7 +84,7 @@ window.onload = function () {
 
 function testExtensionInjection(doInject) {
   if (hasExtensionInjected || !doInject) {
-    hasExtensionInjected && setTimeout(recheckNewTabUrl, 0, localStorage.targetExtensionInjector);
+    hasExtensionInjected && setTimeout(recheckNewTabUrl, 0, localStorage.targetExtensionInjector || "");
     return;
   }
   chrome.runtime.sendMessage(targetExtensionId, {
