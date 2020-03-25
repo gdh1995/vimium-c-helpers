@@ -5,13 +5,18 @@ Some helper extensions for Vimium C, made by [gdh1995](https://github.com/gdh199
 
 <a name="donate"></a>
 Vimium C and its helpers are open-source browser extensions, and everyone can install and use them free of charge.
-If you indeed want to give their author ([gdh1995](https://gdh1995.cn/)) financial support,
-you may donate any small amount of money to him using [Alipay](https://intl.alipay.com/). Thanks a lot!
+If you indeed want to give its author ([gdh1995](https://gdh1995.cn/)) financial support,
+you may donate any small amount of money to him through [PayPal](https://www.paypal.com/)
+  or [Alipay](https://intl.alipay.com/). Thanks a lot!
 
 Vimium C 和其辅助工具是开源的浏览器扩展程序，任何人都可以安装使用它们而无需支付任何费用。
-如果您确实想要资助它们的开发者（[gdh1995](https://gdh1995.cn/)），
-可以通过[支付宝](https://www.alipay.com/)无偿赠与他一小笔钱。谢谢您的支持！
+如果您确实想要资助它的开发者（[gdh1995](https://gdh1995.cn/)），
+可以通过[支付宝](https://www.alipay.com/)或 [PayPal](https://www.paypal.com/)
+无偿赠与他一小笔钱。谢谢您的支持！
 
+PayPal: https://www.paypal.me/gdh1995 (accout: gdh1995@qq.com)
+
+Alipay / 支付宝 : <br/>
 ![Alipay QRCode of gdh1995](https://gdh1995.cn/alipay-recv-money.png)
 
 
@@ -45,12 +50,12 @@ This behavior is only to make these extensions easier to use, but<br>
 和 [gdh1995](https://github.com/gdh1995) 发布的其他扩展，在被发布到“Chrome 网上应用店”和“微软 Edge
 浏览器插件商店”等商店上时，均已向*所有地区*的所有人公开。
 但这个行为只是为了让这些插件更容易使用，**并不代表或者暗示**作者 gdh1995 “同意或者不反对”“台湾”一词可以同“中国”并列。
-虽然并列显示的确**不正确地出现**在了这些商店的页面中（2019年11月16日确认）。
+虽然并列显示这一现状的确**不正确地出现**在了这些商店的页面中（2019年11月16日确认）。
 
 According to [The Constitution of the People's Republic of China](
     http://www.npc.gov.cn/npc/c505/201803/e87e5cd7c1ce46ef866f4ec8e2d709ea.shtml)
     and international consensus,
 *Taiwan is **an inalienable part** of the sacred territory of the People's Republic of China*.
 
-根据[《中华人民共和国宪法》](http://www.npc.gov.cn/npc/c505/201803/e87e5cd7c1ce46ef866f4ec8e2d709ea.shtml)和国际共识，
-*台湾是中华人民共和国的**神圣领土（不可分割的）一部分***。
+根据[《中华人民共和国宪法》](http://www.npc.gov.cn/npc/c505/201803/e87e5cd7c1ce46ef866f4ec8e2d709ea.shtml
+    )和国际共识，*台湾是中华人民共和国的**神圣领土（不可分割的）一部分***。
