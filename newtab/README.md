@@ -2,7 +2,7 @@ NewTab Adapter
 ==============
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
-![Version 0.1.0](https://img.shields.io/badge/release-0.1.0-orange.svg)
+![Version 0.1.2](https://img.shields.io/badge/release-0.1.2-orange.svg)
 **Visit on [Chrome Web Store](
   https://chrome.google.com/webstore/detail/newtab-adapter/cglpcedifkgalfdklahhcchnjepcckfn
   )** /
@@ -39,6 +39,6 @@ This project: Copyright (c) Dahan Gong.
 See the [MIT LICENSE](LICENSE.txt) for details.
 
 * [Vimium C](https://github.com/gdh1995/vimium-c):
-  Copyright (c) 2014-2019 Dahan Gong, Phil Crosby, Ilya Sukhar.
+  Copyright (c) 2014-2020 Dahan Gong, Phil Crosby, Ilya Sukhar.
   [MIT-licensed](https://github.com/philc/vimium/blob/master/MIT-LICENSE.txt).
-* The Orange in icon is from https://pixabay.com/vectors/orange-fruit-mandarin-citrus-fruit-158258/
+* The orange in icon is from https://pixabay.com/vectors/orange-fruit-mandarin-citrus-fruit-158258/

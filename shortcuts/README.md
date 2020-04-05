@@ -19,6 +19,9 @@ and then you may trigger Vimium C's tens of commands easily,
 
 # Release Notes
 
+0.1.2:
+* fix [#1](https://github.com/gdh1995/vimium-c-helpers/issues/1) and update inner Vomnibar page
+
 0.1.0:
 * a base version fixing lots of bugs
 
@@ -40,8 +43,8 @@ This project: Copyright (c) Dahan Gong.
 See the [MIT LICENSE](LICENSE.txt) for details.
 
 * [Vimium C](https://github.com/gdh1995/vimium-c):
-  Copyright (c) 2014-2019 Dahan Gong, Phil Crosby, Ilya Sukhar.
+  Copyright (c) 2014-2020 Dahan Gong, Phil Crosby, Ilya Sukhar.
   [MIT-licensed](https://github.com/philc/vimium/blob/master/MIT-LICENSE.txt).
-* The Orange in icon is from https://pixabay.com/vectors/orange-fruit-mandarin-citrus-fruit-158258/
+* The orange in icon is from https://pixabay.com/vectors/orange-fruit-mandarin-citrus-fruit-158258/
 * The arrow at bottom right corner in icon is based on an icon designed by dAKirby309
     from http://www.iconarchive.com/show/simply-styled-icons-by-dakirby309/Shortcuts-icon.html
