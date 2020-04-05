@@ -18,6 +18,9 @@ while this feature can be disabled by an advanced option.
 
 # Release Notes
 
+0.1.2:
+* fix [#1](https://github.com/gdh1995/vimium-c-helpers/issues/1) and update inner Vomnibar page
+
 0.1.0:
 * a base version, fixing bugs and adding a Vomnibar page
 
