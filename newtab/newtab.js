@@ -1,9 +1,10 @@
 "use strict";
 var isNotChrome_ = "object" === typeof browser && !!browser,
 focusContent_ = "0" !== localStorage.focusNewTabContent, url_ = localStorage.newTabUrl || "newtab.html",
-isRedirecting_ = url_ !== location.href && url_.replace("/", "") !== location.pathname.replace("/", ""),
+isRedirecting_ = url_ !== location.href && url_.replace(/^\/?/, "/") !== location.pathname
+    || focusContent_ && (url_ += "#content", !location.hash),
 useLocation_ = isRedirecting_ && !focusContent_ && /^(file|ftp|https?):/i.test(url_),
-extensionInjector_ = localStorage.interactWithExtension !== "0"  && localStorage.targetExtensionInjector,
+extensionInjector_ = localStorage.interactWithExtension !== "0" && localStorage.targetExtensionInjector,
 extId = localStorage.targetExtensionId || (isNotChrome_ ? "vimium-c@gdh1995.cn" : "hfjbmagddngcpeloejdejnfgbamkjaeg"),
 loadExtension_ = function () { if (!extensionInjector_) { return; }
   var script = document.createElement("script");
