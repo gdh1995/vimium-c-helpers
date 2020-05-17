@@ -2,7 +2,7 @@ NewTab Adapter
 ==============
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
-![Version 0.1.2](https://img.shields.io/badge/release-0.1.2-orange.svg)
+![Version 1.0.0](https://img.shields.io/badge/release-1.0.0-orange.svg)
 **Visit on [Chrome Web Store](
   https://chrome.google.com/webstore/detail/newtab-adapter/cglpcedifkgalfdklahhcchnjepcckfn
   )** /
@@ -18,7 +18,7 @@ while this feature can be disabled by an advanced option.
 
 # Release Notes
 
-0.1.2:
+1.0.0:
 * fix [#1](https://github.com/gdh1995/vimium-c-helpers/issues/1) and update inner Vomnibar page
 
 0.1.0:
