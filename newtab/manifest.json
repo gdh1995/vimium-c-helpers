@@ -9,7 +9,7 @@
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   },
-  "content_security_policy": "script-src 'self' chrome-extension://hfjbmagddngcpeloejdejnfgbamkjaeg/; style-src 'self' 'unsafe-inline'; object-src 'none'; connect-src 'none'",
+  "content_security_policy": "script-src 'self' chrome-extension://hfjbmagddngcpeloejdejnfgbamkjaeg/ chrome-extension://aibcglbfblnogfjhbcmmpobjhnomhcdo/; style-src 'self' 'unsafe-inline'; object-src 'none'; connect-src 'none'",
   "description": "Take over browser's new tab settings and open another configurable URL",
   "homepage_url": "https://github.com/gdh1995/vimium-c-helpers/tree/master/newtab",
   "icons": {

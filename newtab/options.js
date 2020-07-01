@@ -2,7 +2,9 @@
 
 var OnOther = "undefined" === typeof browser || null == (browser && browser.runtime)
     || location.protocol.lastIndexOf("chrome", 0) >= 0 ? 1 /* Chrome */ : 2 /* Firefox */;
-var VimiumCId = OnOther === 1 ? "hfjbmagddngcpeloejdejnfgbamkjaeg" : "vimium-c@gdh1995.cn";
+var IsEdg_ = OnOther === /* Chrome */ 1 && /\sEdg\//.test(navigator.appVersion);
+var VimiumCId = OnOther === 1 ? IsEdg_ ? "aibcglbfblnogfjhbcmmpobjhnomhcdo" : "hfjbmagddngcpeloejdejnfgbamkjaeg"
+    : "vimium-c@gdh1995.cn";
 if (OnOther !== 1) {
   window.chrome = browser;
 }
@@ -104,7 +106,7 @@ function testExtensionInjection(doInject) {
     var name = response && response.name ? response.name + "" : "";
     if (response === false) {
       var str2 = targetExtensionId !== VimiumCId ? "target extension" : "Vimium C";
-      showError('Please add this extension ID to ' + str2 + "'s whitelist", '', chrome.runtime.id);
+      showError('Please add this extension ID to ' + str2 + "'s allow list", '', chrome.runtime.id);
     } else if (typeof response === "object" && name
         && (response.injector != null ? response.injector : targetExtensionId === VimiumCId)) {
       hasExtensionInjected = true;

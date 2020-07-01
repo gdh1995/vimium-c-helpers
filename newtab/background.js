@@ -2,7 +2,9 @@
 
 var OnOther = "undefined" === typeof browser || null == (browser && browser.runtime)
     || location.protocol.lastIndexOf("chrome", 0) >= 0 ? 1 /* Chrome */ : 2 /* Firefox */;
-var VimiumCId = OnOther === 1 ? "hfjbmagddngcpeloejdejnfgbamkjaeg" : "vimium-c@gdh1995.cn";
+var IsEdg_ = OnOther === /* Chrome */ 1 && /\sEdg\//.test(navigator.appVersion);
+var VimiumCId = OnOther === 1 ? IsEdg_ ? "aibcglbfblnogfjhbcmmpobjhnomhcdo" : "hfjbmagddngcpeloejdejnfgbamkjaeg"
+    : "vimium-c@gdh1995.cn";
 if (OnOther !== 1) {
   window.chrome = browser;
 }
@@ -11,7 +13,7 @@ var DefaultFocusNewTabContent = "1";
 var DefaultInteractWithExtension = "1";
 
 var interactWithExtension = (localStorage.interactWithExtension || DefaultInteractWithExtension) !== "0";
-var targetExtensionId = localStorage.targetExtensionId || VimiumCId;
+var targetExtensionId = localStorage.targetExtensionId || (localStorage.targetExtensionId = VimiumCId);
 
 var firstInstall = localStorage.hasInstalled !== "1";
 setTimeout(function() {

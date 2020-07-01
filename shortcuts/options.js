@@ -2,7 +2,9 @@
 
 var OnOther = "undefined" === typeof browser || null == (browser && browser.runtime)
     || location.protocol.lastIndexOf("chrome", 0) >= 0 ? 1 /* Chrome */ : 2 /* Firefox */;
-var VimiumCId = OnOther === 1 ? "hfjbmagddngcpeloejdejnfgbamkjaeg" : "vimium-c@gdh1995.cn";
+var IsEdg_ = OnOther === /* Chrome */ 1 && /\sEdg\//.test(navigator.appVersion);
+var VimiumCId = OnOther === 1 ? IsEdg_ ? "aibcglbfblnogfjhbcmmpobjhnomhcdo" : "hfjbmagddngcpeloejdejnfgbamkjaeg"
+    : "vimium-c@gdh1995.cn";
 if (OnOther !== 1) {
   window.chrome = browser;
 }
@@ -83,7 +85,7 @@ function testTargetExtension(targetId) {
       return error;
     }
     if (response === false) {
-      showError('Please add this extension ID to target extension\'s whitelist:', '', chrome.runtime.id);
+      showError('Please add this extension ID to target extension\'s allow list:', '', chrome.runtime.id);
     } else if (typeof response === "object" && response.name && response.shortcuts != null) {
       if (response.shortcuts === false) {
         showError('The target "' + response.name + '" doesn\'t support shortcuts.');

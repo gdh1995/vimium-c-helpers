@@ -104,7 +104,7 @@
       "description": "Custom shortcut 32"
     }
   },
-  "content_security_policy": "script-src 'self' chrome-extension://hfjbmagddngcpeloejdejnfgbamkjaeg/; style-src 'self' 'unsafe-inline'; default-src 'none'",
+  "content_security_policy": "script-src 'self' chrome-extension://hfjbmagddngcpeloejdejnfgbamkjaeg/ chrome-extension://aibcglbfblnogfjhbcmmpobjhnomhcdo/; style-src 'self' 'unsafe-inline'; default-src 'none'",
   "description": "Provide 32 configurable shortcuts and forward them to another extension like Vimium C",
   "homepage_url": "https://github.com/gdh1995/vimium-c-helpers/tree/master/shortcuts",
   "icons": {
