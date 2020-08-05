@@ -62,6 +62,9 @@ chrome.runtime.onMessageExternal.addListener(function (message, sender, sendResp
 window.setInteractWithExtension = function (newInteract) {
   interactWithExtension = newInteract;
 };
+window.setTargetExtensionId = function (newID) {
+  targetExtensionId = newID || VimiumCId;
+};
 
 console.log("This background process is helpful for faster opening and less CPU cost,\n\
 \tthough at the cost of a little system memory.");

@@ -21,8 +21,21 @@ window.onload = function () {
   var newTabUrlInput = $("#newTabUrlInput");
   var focusNewTabContentInput = $("#focusNewTabContentInput");
   var interactWithExtensionInput = $("#interactWithExtensionInput");
+  var targetExtensionIDInput = $("#targetExtensionIDInput");
   var saveBtn = $("#saveOptions");
   var str, curInteract;
+
+  var trans = chrome.i18n.getMessage;
+  var lang = navigator.language;
+  if (lang.lastIndexOf("en", 0) < 0 || 1) {
+    var nodes = document.querySelectorAll("[data-i]");
+    for (var i = 0; i < nodes.length; i++) {
+      nodes[i].innerText = trans(nodes[i].dataset.i)
+    }
+    document.documentElement.lang = lang;
+    newTabUrlInput.placeholder = newTabUrlInput.placeholder.replace("like ", trans("likeUrl"));
+    targetExtensionIDInput.placeholder = trans(OnOther === 2 ? "extId_ff" : "extId");
+  }
   if (OnOther === 2) {
     var el1 = $("#urlExample");
     el1.textContent = "https://www.bing.com/";
@@ -33,6 +46,12 @@ window.onload = function () {
   curInteract = interactWithExtensionInput.checked = str !== "0" && str !== "false";
   str = localStorage.focusNewTabContent || DefaultFocusNewTabContent;
   focusNewTabContentInput.checked = str !== "0" && str !== "false";
+  targetExtensionIDInput.value = targetExtensionId;
+  $("#selfIDInput").onclick = function () {
+    if (this.selectionStart === this.selectionEnd) {
+      this.select();
+    }
+  };
   saveBtn.onclick = function () {
     var rawNewUrl = newTabUrlInput.value, newUrl = rawNewUrl;
     var hasError = false;
@@ -40,7 +59,7 @@ window.onload = function () {
         || OnOther === 2 && /^file:/i.test(newUrl)) {
       if (newUrl) {
         hasError = true;
-        showError("Should not specify a standard new tab URL here. Otherwise a new tab would reload itself endlessly");
+        showError(trans("avoidStd"));
       }
       newUrl = DefaultNewTab;
     } else if (!/^[a-z\-]+:(?!\d{1,5}$)/.test(newUrl)) {
@@ -53,23 +72,30 @@ window.onload = function () {
     }
     var newFocusContent = focusNewTabContentInput.checked;
     var newInteract = interactWithExtensionInput.checked;
+    var newID = targetExtensionIDInput.value;
+    if (!newID) {
+      targetExtensionIDInput.value = newID = VimiumCId;
+    }
     localStorage.newTabUrl = newUrl;
     localStorage.focusNewTabContent = newFocusContent ? "1" : "0";
     localStorage.interactWithExtension = newInteract ? "1" : "0";
+    localStorage.targetExtensionId = newID;
+    targetExtensionId = newID;
     if (newUrl !== rawNewUrl) {
       newTabUrlInput.value = newUrl;
     }
-    saveBtn.textContent = "Saved";
+    saveBtn.textContent = trans("saved");
     saveBtn.disabled = true;
     setTimeout(function () {
       saveBtn.disabled = false;
-      if (saveBtn.textContent === "Saved") {
-        saveBtn.textContent = "Save Options";
+      if (saveBtn.textContent === trans("saved")) {
+        saveBtn.textContent = trans("saveOpt");
       }
     }, 1000);
     var BG = chrome.extension.getBackgroundPage();
     if (BG) {
       BG.setInteractWithExtension(newInteract);
+      BG.setTargetExtensionId(newID);
     }
     if (!hasError) {
       testExtensionInjection(newInteract);
@@ -89,24 +115,25 @@ function testExtensionInjection(doInject) {
     hasExtensionInjected && setTimeout(recheckNewTabUrl, 0, localStorage.targetExtensionInjector || "");
     return;
   }
-  chrome.runtime.sendMessage(targetExtensionId, {
-    handler: "id"
-  }, function (response) {
-    var error = chrome.runtime.lastError;
+  var callback = function (response) {
+    var error = response && response.error || chrome.runtime.lastError;
+    var trans = chrome.i18n.getMessage;
     if (error) {
       var msg = error.message || error;
       msg = typeof msg === "object" ? JSON.stringify(msg) : msg + "";
-      if (msg.indexOf("establish connection")) {
+      if (msg.toLowerCase().indexOf("invalid extension id") >= 0) {
+        msg = trans("invalidId", [targetExtensionId]);
+      } else if (msg.indexOf("establish connection") >= 0) {
         var str1 = targetExtensionId !== VimiumCId ? targetExtensionId : "Vimium C";
-        msg = 'Can not connect to the extension "' + str1 + '".';
+        msg = trans("connectionFail", [str1]);
       }
       showError(msg);
       return error;
     }
     var name = response && response.name ? response.name + "" : "";
     if (response === false) {
-      var str2 = targetExtensionId !== VimiumCId ? "target extension" : "Vimium C";
-      showError('Please add this extension ID to ' + str2 + "'s allow list", '', chrome.runtime.id);
+      var str2 = targetExtensionId !== VimiumCId ? trans("targetExt") : "Vimium C";
+      showError(trans("addID", [str2]), "", chrome.runtime.id);
     } else if (typeof response === "object" && name
         && (response.injector != null ? response.injector : targetExtensionId === VimiumCId)) {
       hasExtensionInjected = true;
@@ -115,23 +142,28 @@ function testExtensionInjection(doInject) {
           || chrome.runtime.getURL("/lib/injector.js").replace(location.host, response.host);
       script.dataset.extensionId = targetExtensionId;
       script.addEventListener("load", function () {
-        showInfo("Congratulations! " + name + " is ready.");
+        showInfo(trans("injectionReady", [name]));
         localStorage.targetExtensionInjector = this.src;
         recheckNewTabUrl(this.src);
       });
       script.addEventListener("error", function (event) {
-        showInfo('The extension "' + name + '" accepted but injection failed.');
+        showInfo(trans("injectionFail", [name]));
         event.preventDefault();
       });
       showError("");
       document.head.appendChild(script);
     } else {
-      showError("The target extension " + (name || targetExtensionId) + " is not supported.");
+      showError(trans("notSupported", [name || targetExtensionId]));
     }
     if (name) {
       setText($("#targetExtensionName"), name);
     }
-  });
+  };
+  try {
+    chrome.runtime.sendMessage(targetExtensionId, { handler: "id" }, callback);
+  } catch (e) {
+    callback({ error: e.message });
+  }
 }
 
 function recheckNewTabUrl(srcUrl) {

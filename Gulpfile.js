@@ -11,6 +11,7 @@ var { readJSON, readFile } = require("../scripts/dependencies");
 
 var DEST = "../dist/helpers";
 var SOURCES = ["newtab", "shortcuts"];
+var IS_FIREFOX = process.env.BUILD_BTypes === "2";
 
 gulpPrint = gulpPrint.default || gulpPrint;
 if (!fs.existsSync(DEST)) {
@@ -19,26 +20,33 @@ if (!fs.existsSync(DEST)) {
 
 gulp.task("static", function() {
   var path = SOURCES.map(i => i + "/*").concat([
-    "!**/manifest*.json"
+    "**/_locales/**"
+    , "!**/manifest*.json"
     , "!**/*.log", "!**/*.psd", "!**/*.zip", "!**/*.tar", "!**/*.tgz", "!**/*.gz"
     , '!**/*.ts', "!**/tsconfig*.json"
     , "!test*", "!todo*"
   ]);
+  if (IS_FIREFOX) {
+    path = path.concat(["!**/_locales/*_*/**"]);
+    var rimraf = require("rimraf");
+    rimraf.sync(DEST + "/**/_locales/*_*/*.json");
+  }
   return gulp.src(path, { base: "." })
       .pipe(newer(DEST))
       .pipe(gulpPrint())
       .pipe(gulp.dest(DEST));
 });
 
-gulp.task("helpers-fx", function(cb) {
+gulp.task("manifest", function(cb) {
   for (var i of SOURCES) {
-    createFirefoxManifest(i + "/manifest.json");
+    translateManifest(i + "/manifest.json");
   }
   cb();
 });
 
-function createFirefoxManifest(srcPath) {
+function translateManifest(srcPath) {
   var manifest = readJSON(srcPath, true);
+  if (IS_FIREFOX) {
   if (manifest.background) {
     delete manifest.background.persistent;
   }
@@ -60,6 +68,7 @@ function createFirefoxManifest(srcPath) {
   var csp = manifest.content_security_policy;
   if (csp) {
     manifest.content_security_policy = csp.replace(/ ?chrome-extension:\/\/[\w\/\-\_@]*/gi, "");
+  }
   }
 
   var keys = Object.keys(manifest);
@@ -84,7 +93,17 @@ function createFirefoxManifest(srcPath) {
   logger(srcPath);
 }
   
-var firefoxTask = gulp.parallel("static", "helpers-fx");
-gulp.task("helpers-ff", firefoxTask);
-gulp.task("helpers/firefox", firefoxTask);
-gulp.task("default", firefoxTask);
+var allTasks = gulp.parallel("static", "manifest");
+var createGulpTask = function (isFirefox) {
+  return function (cb) {
+    IS_FIREFOX = isFirefox;
+    return allTasks(cb);
+  }
+}
+gulp.task("ff", createGulpTask(true));
+gulp.task("fx", createGulpTask(true));
+gulp.task("cr", createGulpTask(false));
+gulp.task("firefox", createGulpTask(true));
+gulp.task("chrome", createGulpTask(false));
+gulp.task("chromium", createGulpTask(false));
+gulp.task("default", allTasks);

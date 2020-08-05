@@ -23,6 +23,18 @@ window.onload = function () {
   var targetExtensionIDInput = $("#targetExtensionIDInput");
   var keepAliveTimeInput = $("#keepAliveTimeInput");
   var saveBtn = $("#saveOptions");
+
+  var trans = chrome.i18n.getMessage;
+  var lang = navigator.language;
+  if (lang.lastIndexOf("en", 0) < 0 || 1) {
+    var nodes = document.querySelectorAll("[data-i]");
+    for (var i = 0; i < nodes.length; i++) {
+      nodes[i].innerText = trans(nodes[i].dataset.i)
+    }
+    document.documentElement.lang = lang;
+    targetExtensionIDInput.placeholder = trans(OnOther === 2 ? "extId_ff" : "extId");
+  }
+
   var curId = targetExtensionIDInput.value = BG && BG.targetExtensionId
       || localStorage.targetExtensionId || VimiumCId;
   var curKeepAliveTime = BG && BG.keepAliveTime ||
@@ -30,12 +42,12 @@ window.onload = function () {
   if (isNaN(curKeepAliveTime) || !isFinite(curKeepAliveTime) || curKeepAliveTime < 0) {
     curKeepAliveTime = curKeepAliveTime === -1 ? 0 : DefaultKeepAliveTime;
   }
+  keepAliveTimeInput.value  = curKeepAliveTime;
   $("#selfIDInput").onclick = function () {
     if (this.selectionStart === this.selectionEnd) {
       this.select();
     }
   };
-  keepAliveTimeInput.value  = curKeepAliveTime;
   saveBtn.onclick = function () {
     var newID = targetExtensionIDInput.value;
     if (!newID) {
@@ -51,12 +63,12 @@ window.onload = function () {
     }
     localStorage.targetExtensionId = newID;
     localStorage.keepAliveTime = newTimeStr;
-    saveBtn.textContent = "Saved";
+    saveBtn.textContent = trans("saved");
     saveBtn.disabled = true;
     setTimeout(function () {
       saveBtn.disabled = false;
-      if (saveBtn.textContent === "Saved") {
-        saveBtn.textContent = "Save Options";
+      if (saveBtn.textContent === trans("saved")) {
+        saveBtn.textContent = trans("saveOpt");
       }
     }, 1000);
     var BG1 = chrome.extension.getBackgroundPage();
@@ -76,24 +88,26 @@ window.onload = function () {
 }
 
 function testTargetExtension(targetId) {
-  chrome.runtime.sendMessage(targetId, {
-    handler: "id"
-  }, function (response) {
-    var error = chrome.runtime.lastError;
+  var callback = function (response) {
+    var error = response && response.error || chrome.runtime.lastError;
+    var trans = chrome.i18n.getMessage;
     if (error) {
       var msg = error.message || error;
       msg = typeof msg === "object" ? JSON.stringify(msg) : msg + "";
-      if (msg.indexOf("establish connection")) {
-        msg = "Can not connect to the target extension.";
+      if (msg.toLowerCase().indexOf("invalid extension id") >= 0) {
+        msg = trans("invalidId");
+      } else if (msg.indexOf("establish connection") >= 0) {
+        msg = trans("connectionFail");
       }
       showError(msg);
       return error;
     }
+    var name = response && response.name ? response.name + "" : "";
     if (response === false) {
-      showError('Please add this extension ID to target extension\'s allow list:', '', chrome.runtime.id);
-    } else if (typeof response === "object" && response.name && response.shortcuts != null) {
+      showError(trans("addID"), "", chrome.runtime.id);
+    } else if (typeof response === "object" && name && response.shortcuts != null) {
       if (response.shortcuts === false) {
-        showError('The target "' + response.name + '" doesn\'t support shortcuts.');
+        showError(trans("noShortcuts", [name]));
       } else if (hasExtensionInjected || (response.injector != null ? response.injector : targetId === VimiumCId)) {
         hasExtensionInjected = true;
         var script = document.createElement("script");
@@ -101,22 +115,27 @@ function testTargetExtension(targetId) {
             || chrome.runtime.getURL("/lib/injector.js").replace(location.host, response.host);
         script.dataset.extensionId = targetId;
         script.addEventListener("load", function () {
-          showInfo("Congratulations! " + response.name + " connected.");
+          showInfo(trans("injectionReady", [name]));
           this.remove();
         });
         script.addEventListener("error", function (event) {
-          showInfo('The target "' + response.name + '" accepted.');
+          showInfo(trans("accepted", [name]));
           event.preventDefault();
         });
         showError("");
         document.head.appendChild(script);
       } else {
-        showError("", 'The target "' + response.name + '" accepted.');
+				showInfo(trans("accepted", [name]));
       }
     } else {
-      showError('The target extension is not supported.');
+      showError(trans("notSupported"));
     }
-  });
+  };
+  try {
+    chrome.runtime.sendMessage(targetId, { handler: "id" }, callback);
+  } catch (e) {
+    callback({ error: e.message });
+  }
 }
 
 function showError(text, infoText, tailText) {

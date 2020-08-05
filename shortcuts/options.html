@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="utf-8">
-<title>Shortcut Forwarding Options</title>
+<title data-i="name">Shortcut Forwarding Tool</title>
 <meta name="supported-color-schemes" content="light dark">
 <script src="options.js" defer></script>
 <style media="(-ms-high-contrast:active)">button { background: none !important; }</style>
 <body style="color: unset; margin: 0; padding: 5px 17px 14px 17px; overflow: hidden; width: 366px;">
 <div>
-  <label for="targetExtensionIDInput">Target extension ID:</label>
+  <label for="targetExtensionIDInput" data-i="o0">Target extension ID:</label>
 </div>
 <div style="display: flex; margin: 10px 0;">
   <input id="targetExtensionIDInput"
@@ -15,13 +15,13 @@
     spellcheck="false" style="color: currentColor; flex: 1 1 auto; padding-left: 4px;" />
 </div>
 <details style="display: none;">
-  <summary style="margin: 10px 0;">Advanced options</summary>
+  <summary style="margin: 10px 0;" data-i="o1">Advanced options</summary>
   <div style="margin: 10px 0;">
-    <label for="keepAliveTimeInput">Time to keep background process alive:</label>&nbsp;
+    <label for="keepAliveTimeInput" data-i="o2">Time to keep background process alive:</label>&nbsp;
     <input id="keepAliveTimeInput" type="number" placeholder="e.g. 120"
       min="0" max="9999"
       style="text-align: center; width: 72px;" />
-    &nbsp;<span style="line-height: 25px;">seconds</span>
+    &nbsp;<span style="line-height: 25px;" data-i="o3">seconds</span>
   </div>
 </details>
 <div id="infoMessage"></div>
@@ -31,5 +31,5 @@
     style="background: initial; color: initial; flex: 1 1 auto; font-style: italic; padding-left: 4px;" />
 </div>
 <div style="text-align: right; padding-top: 5px;">
-  <button id="saveOptions" style="text-align: center;">Save Options</button>
+  <button id="saveOptions" style="text-align: center;" data-i="saveOpt">Save Options</button>
 </div>

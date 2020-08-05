@@ -1,0 +1,21 @@
+{
+  "name": { "message": "Shortcut Forwarding Tool" },
+	"description": { "message": "Provide 32 configurable shortcuts and forward them to another extension like Vimium C" },
+  "custom": { "message": "Custom shortcut " },
+  "cshort": { "message": "" },
+  "saved": { "message": "Saved" },
+  "saveOpt": { "message": "Save Options" },
+  "invalidId": { "message": "Invalid extension ID." },
+  "connectionFail": { "message": "Can not connect to the target extension." },
+  "addID": { "message": "Please add this extension ID to target extension's allow list" },
+  "injectionReady": { "message": "Congratulations! $1 is ready." },
+  "noShortcuts": { "message": "The target \"$1\" doesn't support shortcuts." },
+  "notSupported": { "message": "The target extension is not supported." },
+  "accepted": { "message": "The target \"$1\" accepted." },
+  "extId": { "message": "Extension ID" },
+  "extId_ff": { "message": "Extension ID (not Firefox's extension UUID)" },
+  "o0": { "message": "Target extension ID:" },
+  "o1": { "message": "Advanced options" },
+  "o2": { "message": "Time to keep background process alive:" },
+  "o3": { "message": "seconds" }
+}

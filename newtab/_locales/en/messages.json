@@ -1,0 +1,28 @@
+{
+  "name": { "message": "NewTab Adapter" },
+	"description": { "message": "Take over browser's new tab settings and open another configurable URL" },
+  "title": { "message": "New Tab" },
+  "avoidStd": {
+    "message": "Should not specify a standard new tab URL here. Otherwise a new tab would reload itself endlessly"
+  },
+  "saved": { "message": "Saved" },
+  "saveOpt": { "message": "Save Options" },
+  "invalidId": { "message": "Invalid extension ID: \"$1\"." },
+  "connectionFail": { "message": "Can not connect to the extension: \"$1\"." },
+  "targetExt": { "message": "target extension" },
+  "addID": { "message": "Please add this extension ID to $1's allow list" },
+  "injectionReady": { "message": "Congratulations! $1 is ready." },
+  "injectionFail": { "message": "The extension $1 accepted but injection failed." },
+  "notSupported": { "message": "The target extension $1 is not supported." },
+  "likeUrl": { "message": "like " },
+  "extId": { "message": "Extension ID" },
+  "extId_ff": { "message": "Extension ID (not Firefox's extension UUID)" },
+  "o0": { "message": "Target new tab URL" },
+  "o1": { "message": " (like " },
+  "o2": { "message": " ):" },
+  "o3": { "message": "Focus web page when creating a new tab." },
+  "o4": { "message": "Advanced options" },
+  "o5": { "message": "Interact with " },
+  "o6": { "message": "." },
+  "o7": { "message": "The extension ID to communicate:" }
+}

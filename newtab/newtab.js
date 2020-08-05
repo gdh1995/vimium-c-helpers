@@ -7,7 +7,13 @@ useLocation_ = isRedirecting_ && !focusContent_ && /^(file|ftp|https?):/i.test(u
 extensionInjector_ = localStorage.interactWithExtension !== "0" && localStorage.targetExtensionInjector,
 extId = localStorage.targetExtensionId || (isNotChrome_ ? "vimium-c@gdh1995.cn"
     : /\sEdg\//.test(navigator.appVersion) ? "aibcglbfblnogfjhbcmmpobjhnomhcdo" : "hfjbmagddngcpeloejdejnfgbamkjaeg"),
-loadExtension_ = function () { if (!extensionInjector_) { return; }
+loadExtension_ = function () {
+  var lang = navigator.language;
+  if (lang.lastIndexOf("en", 0) < 0) {
+    document.title = chrome_.i18n.getMessage("title");
+    document.documentElement.lang = lang;
+  }
+  if (!extensionInjector_) { return; }
   var script = document.createElement("script");
   script.src = extensionInjector_;
   script.dataset.extensionId = extId;

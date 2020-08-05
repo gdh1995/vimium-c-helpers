@@ -1,0 +1,21 @@
+{
+  "name": { "message": "快捷键补充工具" },
+	"description": { "message": "提供 32 个可全局绑定的快捷键，快捷键被触发时通知其它扩展（比如 Vimium C）执行相应操作" },
+  "custom": { "message": "第 " },
+  "cshort": { "message": " 号快捷键" },
+  "saved": { "message": "已保存" },
+  "saveOpt": { "message": "保存" },
+  "invalidId": { "message": "扩展 ID 不合法。" },
+  "connectionFail": { "message": "无法连接到目标扩展。" },
+  "addID": { "message": "请把这个 ID 添加到 目标扩展 的信任列表中。" },
+  "injectionReady": { "message": "恭喜成功连接到 $1 !" },
+  "injectionFail": { "message": "成功连接到 “$1”，但它不支持全局快捷键的触发消息。" },
+  "notSupported": { "message": "不支持目标扩展。" },
+  "accepted": { "message": "目标扩展 “$1” 已接受." },
+  "extId": { "message": "扩展程序 ID" },
+  "extId_ff": { "message": "扩展本身的 ID，注意不是 Firefox 随机生成的 UUID" },
+  "o0": { "message": "目标扩展的 ID：" },
+  "o1": { "message": "高级选项" },
+  "o2": { "message": "单次保持后台进程存活的时长：" },
+  "o3": { "message": "秒" }
+}

@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="utf-8">
-<title>NewTab Adapter</title>
+<title data-i="name">NewTab Adapter</title>
 <meta name="supported-color-schemes" content="light dark">
 <script src="options.js" defer></script>
 <style media="(-ms-high-contrast:active)">button { background: none !important; }</style>
 <body style="color: unset; margin: 0; padding: 5px 17px 14px 17px; overflow: hidden; width: 366px;">
 <div>
-  <label for="newTabUrlInput">Target new tab URL</label>
-  (like <span id="urlExample" style="user-select: all; text-decoration: underline;">
-    chrome-search://local-ntp/local-ntp.html
-  </span>):
+  <label for="newTabUrlInput" data-i="o0">Target new tab URL</label><span data-i="o1">
+  (like </span><span id="urlExample" style="user-select: all; text-decoration: underline;">
+    chrome-search://local-ntp/local-ntp.html</span><span data-i="o2"> ):</span>
 </div>
 <div style="display: flex; margin: 10px 0;">
   <input id="newTabUrlInput" type="text" spellcheck="false" placeholder="like https://www.bing.com"
@@ -18,22 +17,34 @@
 </div>
 <div style="margin: 10px 0;">
   <input id="focusNewTabContentInput" type="checkbox" value="true" />
-  <label for="focusNewTabContentInput" style="vertical-align: middle;">Focus web page when creating a new tab.</label>
+  <label for="focusNewTabContentInput" style="vertical-align: middle;" data-i="o3">
+    Focus web page when creating a new tab.
+  </label>
 </div>
 <details>
-  <summary style="margin: 10px 0;">Advanced options</summary>
+  <summary style="margin: 10px 0;" data-i="o4">Advanced options</summary>
   <div style="margin: 10px 0;">
     <input id="interactWithExtensionInput" type="checkbox" value="true" />
     <label for="interactWithExtensionInput" style="vertical-align: middle;">
-      Interact with <span id="targetExtensionName">Vimium C</span>.
+      <span data-i="o5">Interact with </span><span id="targetExtensionName">Vimium C</span><span data-i="o6">.</span>
     </label>
   </div>
+  <div>
+    <label for="targetExtensionIDInput" data-i="o7">The extension ID to communicate:</label>
+  </div>
+  <div style="display: flex; margin: 10px 0;">
+    <input id="targetExtensionIDInput"
+      placeholder="Extension ID (not Firefox's extension UUID)"
+      spellcheck="false" style="color: currentColor; flex: 1 1 auto; padding-left: 4px;" />
+  </div>
+  
 </details>
 <div id="infoMessage"></div>
 <div id="errorMessage" style="color: red;"></div>
 <div style="display: none; margin: 10px 0;">
-  <input style="flex: 1 1 auto; padding-left: 4px;" />
+  <input id="selfIDInput" readonly spellcheck="false"
+    style="background: initial; color: initial; flex: 1 1 auto; font-style: italic; padding-left: 4px;" />
 </div>
 <div style="text-align: right; padding-top: 5px;">
-  <button id="saveOptions" style="text-align: center;">Save Options</button>
+  <button id="saveOptions" style="text-align: center;" data-i="saveOpt">Save Options</button>
 </div>
