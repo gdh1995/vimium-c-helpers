@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<head>
+<html lang="en">
 <meta charset="utf-8">
 <title>NewTab Adapter</title>
 <meta name="supported-color-schemes" content="light dark">
 <script src="options.js" defer></script>
-<body style="box-sizing: border-box; margin: 0; padding: 5px 17px 14px 17px; overflow: hidden; width: 400px;">
+<style media="(-ms-high-contrast:active)">button { background: none !important; }</style>
+<body style="color: unset; margin: 0; padding: 5px 17px 14px 17px; overflow: hidden; width: 366px;">
 <div>
   <label for="newTabUrlInput">Target new tab URL</label>
   (like <span id="urlExample" style="user-select: all; text-decoration: underline;">
@@ -13,7 +14,7 @@
 </div>
 <div style="display: flex; margin: 10px 0;">
   <input id="newTabUrlInput" type="text" spellcheck="false" placeholder="like https://www.bing.com"
-    style="flex: 1 1 auto; padding-left: 4px;" />
+    style="color: currentColor; flex: 1 1 auto; padding-left: 4px;" />
 </div>
 <div style="margin: 10px 0;">
   <input id="focusNewTabContentInput" type="checkbox" value="true" />
@@ -33,6 +34,6 @@
 <div style="display: none; margin: 10px 0;">
   <input style="flex: 1 1 auto; padding-left: 4px;" />
 </div>
-<div style="text-align: right;">
+<div style="text-align: right; padding-top: 5px;">
   <button id="saveOptions" style="text-align: center;">Save Options</button>
 </div>

@@ -30,6 +30,11 @@ window.onload = function () {
   if (isNaN(curKeepAliveTime) || !isFinite(curKeepAliveTime) || curKeepAliveTime < 0) {
     curKeepAliveTime = curKeepAliveTime === -1 ? 0 : DefaultKeepAliveTime;
   }
+  $("#selfIDInput").onclick = function () {
+    if (this.selectionStart === this.selectionEnd) {
+      this.select();
+    }
+  };
   keepAliveTimeInput.value  = curKeepAliveTime;
   saveBtn.onclick = function () {
     var newID = targetExtensionIDInput.value;
