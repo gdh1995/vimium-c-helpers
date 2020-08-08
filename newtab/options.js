@@ -32,7 +32,7 @@ window.onload = function () {
     for (var i = 0; i < nodes.length; i++) {
       nodes[i].innerText = trans(nodes[i].dataset.i)
     }
-    document.documentElement.lang = lang;
+    document.documentElement.lang = trans("lang1");
     newTabUrlInput.placeholder = newTabUrlInput.placeholder.replace("like ", trans("likeUrl"));
     targetExtensionIDInput.placeholder = trans(OnOther === 2 ? "extId_ff" : "extId");
   }

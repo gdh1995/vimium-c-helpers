@@ -1,6 +1,7 @@
 {
   "name": { "message": "Shortcut Forwarding Tool" },
 	"description": { "message": "Provide 32 configurable shortcuts and forward them to another extension like Vimium C" },
+  "lang1": { "message": "en" },
   "custom": { "message": "Custom shortcut " },
   "cshort": { "message": "" },
   "saved": { "message": "Saved" },

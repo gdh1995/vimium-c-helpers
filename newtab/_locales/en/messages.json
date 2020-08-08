@@ -1,6 +1,7 @@
 {
   "name": { "message": "NewTab Adapter" },
 	"description": { "message": "Take over browser's new tab settings and open another configurable URL" },
+  "lang1": { "message": "en" },
   "title": { "message": "New Tab" },
   "avoidStd": {
     "message": "Should not specify a standard new tab URL here. Otherwise a new tab would reload itself endlessly"

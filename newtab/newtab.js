@@ -10,8 +10,9 @@ extId = localStorage.targetExtensionId || (isNotChrome_ ? "vimium-c@gdh1995.cn"
 loadExtension_ = function () {
   var lang = navigator.language;
   if (lang.lastIndexOf("en", 0) < 0) {
-    document.title = chrome_.i18n.getMessage("title");
-    document.documentElement.lang = lang;
+    var trans = chrome_.i18n.getMessage;
+    document.title = trans("title");
+    document.documentElement.lang = trans("lang1");;
   }
   if (!extensionInjector_) { return; }
   var script = document.createElement("script");
