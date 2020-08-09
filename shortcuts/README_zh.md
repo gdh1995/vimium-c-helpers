@@ -3,6 +3,13 @@
   快捷键补充工具
 </h2>
 
+[![MIT 许可协议](https://img.shields.io/badge/许可协议-MIT-blue.svg)](LICENSE.txt)
+![版本 1.1.0](https://img.shields.io/badge/release-1.1.0-orange.svg)
+在 **[Firefox 附加组件](https://addons.mozilla.org/firefox/addon/shortcut-forwarding-tool/)** /
+**[Chrome 网上应用店](
+  https://chrome.google.com/webstore/detail/shortcut-forwarding-tool/clnalilglegcjmlgenoppklmfppddien
+  )** 中查看
+
 本项目是一款开源、免费的快捷键增强类浏览器扩展，提供了 32 个全局快捷键位置，用户触发后它会将快捷键消息转发给指定的另一扩展程序。
 
 [Here's its description in English](README.md)（点击查看英文介绍）。

@@ -6,7 +6,11 @@ var newer = require('gulp-newer');
 var gulpPrint = require('gulp-print');
 var logger = require("fancy-log");
 var osPath = require('path');
-var { readJSON, readFile } = require("../scripts/dependencies");
+try {
+  var { readJSON, readFile } = require("../scripts/dependencies");
+} catch {
+  var { readJSON, readFile } = require("../vimium-c/scripts/dependencies");
+}
 
 
 var DEST = "../dist/helpers";
@@ -56,7 +60,15 @@ function translateManifest(srcPath) {
   delete manifest.update_url;
   var specific = manifest.browser_specific_settings || (manifest.browser_specific_settings = {});
   var gecko = specific.gecko || (specific.gecko = {});
-  gecko.id = manifest.name.replace(/ /g, "-").toLowerCase();
+  var name = manifest.name;
+  var i18n_cache = null;
+  name = name.replace(/__MSG_(\w+)__/, function (_, key) {
+    if (!i18n_cache) {
+      i18n_cache = readJSON(srcPath.replace("manifest.json", `_locales/${manifest.default_locale}/messages.json`));
+    }
+    return i18n_cache[key].message;
+  });
+  gecko.id = name.replace(/ /g, "-").toLowerCase();
   gecko.id += "@gdh1995.cn";
   gecko.strict_min_version = "63.0";
   var permissions = manifest.permissions

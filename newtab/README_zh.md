@@ -3,6 +3,13 @@
   新标签页修改器
 </h2>
 
+[![MIT 许可协议](https://img.shields.io/badge/许可协议-MIT-blue.svg)](LICENSE.txt)
+![版本 1.2.0](https://img.shields.io/badge/release-1.2.0-orange.svg)
+在 **[Firefox 附加组件](https://addons.mozilla.org/firefox/addon/newtab-adapter/)** /
+**[Chrome 网上应用店](
+  https://chrome.google.com/webstore/detail/newtab-adapter/cglpcedifkgalfdklahhcchnjepcckfn
+  )** 中查看
+
 本项目是一款开源、免费的实用工具类浏览器扩展，可以将浏览器新标签页指向任意网址，并支持移动新建标签页的键盘焦点到页面上。
 
 本扩展还提供了一个空白的新标签页，此页面默认会加载 Vimium C 脚本以支持其快捷键功能。您可以在本扩展的设置页面禁止它。

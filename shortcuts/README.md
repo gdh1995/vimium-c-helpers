@@ -13,11 +13,11 @@
 This web extension provides 32 global shortcut placeholders,
 and it will forward all shortcut messages to another (configurable) extension.
 
-[阅读中文介绍 (description in Chinese) 。](README_zh.md)
+[阅读中文介绍 (description in Chinese) 。](
+  https://github.com/gdh1995/vimium-c-helpers/blob/master/shortcuts/README_zh.md)
 
 The common usage of this extension is to forward all shortcuts to [Vimium C](https://github.com/gdh1995/vimium-c),
-and then you may trigger Vimium C's tens of commands easily,
-    without taking care of what modes you're currently in.
+and then you may trigger Vimium C's tens of commands easily, without taking care of what modes you're currently in.
 
 For example, if you:
 * specify <kbd>Alt+Shift+H</kbd> for "Custom Shortcut 1" in the shortcut settings page (chrome://extensions/shortcuts),
