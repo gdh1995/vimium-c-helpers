@@ -13,10 +13,10 @@
 This web extension takes over your browser's new tab settings,
 and it can move the focus of a new tab from address bar to page content.
 
-[阅读中文介绍 (description in Chinese) 。](https://github.com/gdh1995/vimium-c-helpers/blob/master/newtab/README_zh.md)
-
 This extension runs Vimium C's content scripts on its newtab page by default,
 while this feature can be disabled by an advanced option.
+
+[阅读中文介绍 (description in Chinese) 。](https://github.com/gdh1995/vimium-c-helpers/blob/master/newtab/README_zh.md)
 
 # Release Notes
 
