@@ -1,24 +1,26 @@
 Some helper extensions for Vimium C, made by [gdh1995](https://github.com/gdh1995) and under MIT license.
 
+<a name="donate"></a><a name="donating"></a><a name="donation"></a>
 
 # Donate / 捐赠
 
-<a name="donate"></a>
-Vimium C and its helpers are open-source browser extensions, and everyone can install and use them free of charge.
-If you indeed want to give its author ([gdh1995](https://gdh1995.cn/)) financial support,
-you may donate any small amount of money to him through [PayPal](https://www.paypal.com/)
-  or [Alipay](https://intl.alipay.com/). Thanks a lot!
+Vimium C is an open-source browser extension, and everyone can install and use it free of charge.
+If you indeed want to give its author ([gdh1995@qq.com](https://github.com/gdh1995)) financial support,
+you may donate any small amount of money to him through
+  [Open Collective](https://opencollective.com/vimium-c), [PayPal](https://www.paypal.me/gdh1995),
+  [Alipay](https://intl.alipay.com/) or [WeChat](https://www.wechat.com/). Thanks a lot!
 
-Vimium C 和其辅助工具是开源的浏览器扩展程序，任何人都可以安装使用它们而无需支付任何费用。
-如果您确实想要资助它的开发者（[gdh1995](https://gdh1995.cn/)），
-可以通过[支付宝](https://www.alipay.com/)或 [PayPal](https://www.paypal.com/)
-无偿赠与他一小笔钱。谢谢您的支持！
+Vimium C 是一款开源的浏览器扩展程序，任何人都可以安装使用它而无需支付任何费用。
+如果您确实想要资助它的开发者（[gdh1995@qq.com](https://github.com/gdh1995)），
+可以通过[支付宝](https://www.alipay.com/)、[微信](https://weixin.qq.com/)、[Open Collective](
+    https://opencollective.com/vimium-c)
+或 [PayPal](https://www.paypal.me/gdh1995) 无偿赠与他一小笔钱。谢谢您的支持！
 
-PayPal: https://www.paypal.me/gdh1995 (accout: gdh1995@qq.com)
+A donation list is in / 捐赠列表详见: https://github.com/gdh1995/vimium-c/wiki/Donation-List .
 
-Alipay / 支付宝 : <br/>
-![Alipay QRCode of gdh1995](https://gdh1995.cn/alipay-recv-money.png)
-
+<img width="240" alt="gdh1995 的支付宝二维码" src="https://gdh1995.cn/alipay-recv-money.png"
+  /> <img width="240" alt="gdh1995 的微信赞赏码" src="https://gdh1995.cn/wechat-recv-money.png"
+  /> <img width="240" alt="PayPal QRCode of gdh1995" src="https://gdh1995.cn/paypal-recv-money.png" />
 
 # Thanks & Licenses
 
