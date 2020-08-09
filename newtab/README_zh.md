@@ -20,4 +20,4 @@
 
 本项目主要由 [gdh1995](https://github.com/gdh1995) 开发并维护，并且以 [MIT 许可协议](LICENSE.txt) 开源。
 
-本项目的主仓库是 https://github.com/gdh1995/vimium-c-helpers。
+本项目的主仓库是 https://github.com/gdh1995/vimium-c-helpers 。
