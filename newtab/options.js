@@ -139,10 +139,6 @@ function testExtensionInjection(doInject) {
         var str1 = targetExtensionId !== VimiumCId ? targetExtensionId : "Vimium C";
         msg = trans("connectionFail", [str1]);
       }
-      var BG = chrome.extension.getBackgroundPage();
-      if (BG) {
-        BG.console.trace(response, chrome.runtime.lastError);
-      }
       showError(msg);
       return error;
     }
