@@ -4,7 +4,7 @@
 </h2>
 
 [![MIT 许可协议](https://img.shields.io/badge/许可协议-MIT-blue.svg)](LICENSE.txt)
-![版本 1.2.0](https://img.shields.io/badge/release-1.2.0-orange.svg)
+![版本 1.3.0](https://img.shields.io/badge/release-1.3.0-orange.svg)
 在 **[Firefox 附加组件](https://addons.mozilla.org/firefox/addon/newtab-adapter/)** /
 **[Chrome 网上应用店](
   https://chrome.google.com/webstore/detail/newtab-adapter/cglpcedifkgalfdklahhcchnjepcckfn
@@ -20,4 +20,4 @@
 
 本项目主要由 [gdh1995](https://github.com/gdh1995) 开发并维护，并且以 [MIT 许可协议](LICENSE.txt) 开源。
 
-本项目的主仓库是 https://github.com/gdh1995/vimium-c-helpers 。
+本项目的主仓库是 https://github.com/gdh1995/vimium-c-helpers 和 https://gitee.com/gdh1995/vimium-c-helpers 。

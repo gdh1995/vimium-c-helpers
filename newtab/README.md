@@ -4,7 +4,7 @@
 </h2>
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
-![Version 1.2.0](https://img.shields.io/badge/release-1.2.0-orange.svg)
+![Version 1.3.0](https://img.shields.io/badge/release-1.3.0-orange.svg)
 **Visit on [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/newtab-adapter/)** /
 **[Chrome Web Store](
   https://chrome.google.com/webstore/detail/newtab-adapter/cglpcedifkgalfdklahhcchnjepcckfn
@@ -19,6 +19,9 @@ while this feature can be disabled by an advanced option.
 [阅读中文介绍 (description in Chinese) 。](https://github.com/gdh1995/vimium-c-helpers/blob/master/newtab/README_zh.md)
 
 # Release Notes
+
+1.3.0:
+* Firefox: add an option of "Open target URL in a same container (group)" to let it work with Simple Tab Groups
 
 1.2.0:
 * add Chinese UI
