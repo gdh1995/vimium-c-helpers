@@ -20,6 +20,7 @@ window.onload = function () {
   window.onload = null;
   var newTabUrlInput = $("#newTabUrlInput");
   var focusNewTabContentInput = $("#focusNewTabContentInput");
+  var setOpenerInput = $("#setOpenerInput");
   var interactWithExtensionInput = $("#interactWithExtensionInput");
   var targetExtensionIDInput = $("#targetExtensionIDInput");
   var saveBtn = $("#saveOptions");
@@ -27,19 +28,23 @@ window.onload = function () {
 
   var trans = chrome.i18n.getMessage;
   var lang = navigator.language;
-  if (lang.lastIndexOf("en", 0) < 0 || 1) {
+  if (lang.lastIndexOf("en", 0) < 0) {
     var nodes = document.querySelectorAll("[data-i]");
     for (var i = 0; i < nodes.length; i++) {
       nodes[i].innerText = trans(nodes[i].dataset.i)
     }
-    document.documentElement.lang = trans("lang1");
     newTabUrlInput.placeholder = newTabUrlInput.placeholder.replace("like ", trans("likeUrl"));
-    targetExtensionIDInput.placeholder = trans(OnOther === 2 ? "extId_ff" : "extId");
   }
+  document.documentElement.lang = trans("lang1");
+  targetExtensionIDInput.placeholder = trans(OnOther === 2 ? "extId_ff" : "extId");
   if (OnOther === 2) {
     var el1 = $("#urlExample");
     el1.textContent = "https://www.bing.com/";
     el1.style.textDecoration = "";
+  } else {
+    setOpenerInput.disabled = true;
+    setOpenerInput.checked = false;
+    setOpenerInput.parentElement.style.display = "none";
   }
   str = localStorage.interactWithExtension || DefaultInteractWithExtension;
   newTabUrlInput.value = localStorage.newTabUrl || DefaultNewTab;
@@ -70,14 +75,19 @@ window.onload = function () {
         newUrl = "https://" + newUrl;
       }
     }
+    var newSetOpener = setOpenerInput.checked;
     var newFocusContent = focusNewTabContentInput.checked;
     var newInteract = interactWithExtensionInput.checked;
     var newID = targetExtensionIDInput.value;
     if (!newID) {
       targetExtensionIDInput.value = newID = VimiumCId;
     }
+    if (newSetOpener && !newFocusContent) {
+      focusNewTabContentInput.checked = newFocusContent = true;
+    }
     localStorage.newTabUrl = newUrl;
     localStorage.focusNewTabContent = newFocusContent ? "1" : "0";
+    localStorage.setOpener = newSetOpener ? "1" : "0";
     localStorage.interactWithExtension = newInteract ? "1" : "0";
     localStorage.targetExtensionId = newID;
     targetExtensionId = newID;
@@ -123,9 +133,15 @@ function testExtensionInjection(doInject) {
       msg = typeof msg === "object" ? JSON.stringify(msg) : msg + "";
       if (msg.toLowerCase().indexOf("invalid extension id") >= 0) {
         msg = trans("invalidId", [targetExtensionId]);
+      } else if (msg.indexOf("extension is undefined") >= 0) {
+        msg = trans("noExtension", [targetExtensionId]);
       } else if (msg.indexOf("establish connection") >= 0) {
         var str1 = targetExtensionId !== VimiumCId ? targetExtensionId : "Vimium C";
         msg = trans("connectionFail", [str1]);
+      }
+      var BG = chrome.extension.getBackgroundPage();
+      if (BG) {
+        BG.console.trace(response, chrome.runtime.lastError);
       }
       showError(msg);
       return error;

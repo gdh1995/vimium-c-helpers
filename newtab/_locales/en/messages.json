@@ -9,6 +9,7 @@
   "saved": { "message": "Saved" },
   "saveOpt": { "message": "Save Options" },
   "invalidId": { "message": "Invalid extension ID: \"$1\"." },
+  "noExtension": { "message": "Didn't find the extension ID of which is \"$1\"." },
   "connectionFail": { "message": "Can not connect to the extension: \"$1\"." },
   "targetExt": { "message": "target extension" },
   "addID": { "message": "Please add this extension ID to $1's allow list" },
@@ -23,6 +24,7 @@
   "o2": { "message": " ):" },
   "o3": { "message": "Focus web page when creating a new tab." },
   "o4": { "message": "Advanced options" },
+  "o4_2": { "message": "Open target URL in a same container (group)." },
   "o5": { "message": "Interact with " },
   "o6": { "message": "." },
   "o7": { "message": "The extension ID to communicate:" }

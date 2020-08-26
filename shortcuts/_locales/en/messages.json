@@ -7,6 +7,7 @@
   "saved": { "message": "Saved" },
   "saveOpt": { "message": "Save Options" },
   "invalidId": { "message": "Invalid extension ID." },
+  "noExtension": { "message": "Didn't find the target extension." },
   "connectionFail": { "message": "Can not connect to the target extension." },
   "addID": { "message": "Please add this extension ID to target extension's allow list" },
   "injectionReady": { "message": "Congratulations! $1 is ready." },

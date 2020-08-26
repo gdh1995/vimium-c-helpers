@@ -24,6 +24,12 @@
 <details>
   <summary style="margin: 10px 0;" data-i="o4">Advanced options</summary>
   <div style="margin: 10px 0;">
+    <input id="setOpenerInput" type="checkbox" value="true" />
+    <label for="setOpenerInput" style="vertical-align: middle;">
+      <span data-i="o4_2">Open target URL in a same container (group).</span>
+    </label>
+  </div>
+  <div style="margin: 10px 0;">
     <input id="interactWithExtensionInput" type="checkbox" value="true" />
     <label for="interactWithExtensionInput" style="vertical-align: middle;">
       <span data-i="o5">Interact with </span><span id="targetExtensionName">Vimium C</span><span data-i="o6">.</span>
@@ -37,7 +43,6 @@
       placeholder="Extension ID (not Firefox's extension UUID)"
       spellcheck="false" style="color: currentColor; flex: 1 1 auto; padding-left: 4px;" />
   </div>
-  
 </details>
 <div id="infoMessage"></div>
 <div id="errorMessage" style="color: red;"></div>

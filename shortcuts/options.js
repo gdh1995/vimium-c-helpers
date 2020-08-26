@@ -26,14 +26,14 @@ window.onload = function () {
 
   var trans = chrome.i18n.getMessage;
   var lang = navigator.language;
-  if (lang.lastIndexOf("en", 0) < 0 || 1) {
+  if (lang.lastIndexOf("en", 0) < 0) {
     var nodes = document.querySelectorAll("[data-i]");
     for (var i = 0; i < nodes.length; i++) {
       nodes[i].innerText = trans(nodes[i].dataset.i)
     }
-    document.documentElement.lang = trans("lang1");
-    targetExtensionIDInput.placeholder = trans(OnOther === 2 ? "extId_ff" : "extId");
   }
+  document.documentElement.lang = trans("lang1");
+  targetExtensionIDInput.placeholder = trans(OnOther === 2 ? "extId_ff" : "extId");
 
   var curId = targetExtensionIDInput.value = BG && BG.targetExtensionId
       || localStorage.targetExtensionId || VimiumCId;
@@ -96,6 +96,8 @@ function testTargetExtension(targetId) {
       msg = typeof msg === "object" ? JSON.stringify(msg) : msg + "";
       if (msg.toLowerCase().indexOf("invalid extension id") >= 0) {
         msg = trans("invalidId");
+      } else if (msg.indexOf("extension is undefined") >= 0) {
+        msg = trans("noExtension");
       } else if (msg.indexOf("establish connection") >= 0) {
         msg = trans("connectionFail");
       }

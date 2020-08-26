@@ -7,6 +7,7 @@
   "saved": { "message": "已保存" },
   "saveOpt": { "message": "保存" },
   "invalidId": { "message": "扩展 ID “$1” 不合法。" },
+  "noExtension": { "message": "未找到 ID 是 “$1” 的扩展。" },
   "connectionFail": { "message": "无法连接到扩展 “$1”。" },
   "targetExt": { "message": "目标扩展" },
   "addID": { "message": "请把这个 ID 添加到 $1 的信任列表中。" },
@@ -21,6 +22,7 @@
   "o2": { "message": "）：" },
   "o3": { "message": "将键盘焦点从浏览器地址栏移动到网页本身" },
   "o4": { "message": "高级选项" },
+  "o4_2": { "message": "使用当前身份（即在当前标签组中）打开此网址" },
   "o5": { "message": "和扩展 “" },
   "o6": { "message": "” 交互" },
   "o7": { "message": "交互目标的 ID：" }
