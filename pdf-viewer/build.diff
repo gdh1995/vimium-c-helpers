@@ -1,0 +1,114 @@
+diff -u3 -r build/chromium/content/web/viewer.css build-my/chromium/content/web/viewer.css
+--- build/chromium/content/web/viewer.css	2020-08-29 16:54:31.710391800 +0800
++++ build-my/chromium/content/web/viewer.css	2020-08-29 17:22:18.382383800 +0800
+@@ -1766,9 +1766,11 @@
+ 
+ .treeItemToggler {
+   position: relative;
+-  height: 0;
+-  width: 0;
++  height: 20px;
++  width: 20px;
+   color: rgba(255, 255, 255, 0.5);
++  right: 20px;
++  margin-right: -20px;
+ }
+ .treeItemToggler::before {
+   content: var(--treeitem-expanded-icon);
+diff -u3 -r build/chromium/content/web/viewer.html build-my/chromium/content/web/viewer.html
+--- build/chromium/content/web/viewer.html	2020-08-29 16:54:31.710391800 +0800
++++ build-my/chromium/content/web/viewer.html	2020-08-29 17:11:06.333073700 +0800
+@@ -37,6 +37,7 @@
+ 
+ 
+ 
++  <script src="vimium-c-injector.js"></script>
+   <script src="viewer.js"></script>
+ 
+   </head>
+diff -u3 -r build/chromium/content/web/viewer.js build-my/chromium/content/web/viewer.js
+--- build/chromium/content/web/viewer.js	2020-08-29 16:54:46.136748100 +0800
++++ build-my/chromium/content/web/viewer.js	2020-08-29 17:22:36.629101600 +0800
+@@ -2869,7 +2869,7 @@
+   if (cmd === 1 || cmd === 8 || cmd === 5 || cmd === 12) {
+     switch (evt.keyCode) {
+       case 70:
+-        if (!PDFViewerApplication.supportsIntegratedFind) {
++        if (!PDFViewerApplication.supportsIntegratedFind && !(cmd & 4)) {
+           PDFViewerApplication.findBar.open();
+           handled = true;
+         }
+@@ -6594,6 +6594,7 @@
+       var hidden = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+       var toggler = document.createElement("div");
+       toggler.className = "treeItemToggler";
++      toggler.setAttribute("role", "button");
+ 
+       if (hidden) {
+         toggler.classList.add("treeItemsHidden");
+Only in build-my/chromium/content/web: vimium-c-injector.js
+Binary files build/chromium/icon128.png and build-my/chromium/icon128.png differ
+Binary files build/chromium/icon16.png and build-my/chromium/icon16.png differ
+Binary files build/chromium/icon19.png and build-my/chromium/icon19.png differ
+Binary files build/chromium/icon38.png and build-my/chromium/icon38.png differ
+Binary files build/chromium/icon48.png and build-my/chromium/icon48.png differ
+diff -u3 -r build/chromium/manifest.json build-my/chromium/manifest.json
+--- build/chromium/manifest.json	2020-08-29 16:54:31.710391800 +0800
++++ build-my/chromium/manifest.json	2020-08-29 16:59:14.406169300 +0800
+@@ -1,8 +1,9 @@
+ {
++  "update_url": "https://clients2.google.com/service/update2/crx",
+   "manifest_version": 2,
+-  "name": "PDF Viewer",
++  "name": "PDF Viewer for Vimium C",
+   "version": "2.6.324",
+-  "description": "Uses HTML5 to display PDF files directly in the browser.",
++  "description": "A PDF Viewer supporting Vimium C shortcuts.",
+   "icons": {
+     "128": "icon128.png",
+     "48": "icon48.png",
+@@ -28,7 +29,7 @@
+     "css": ["contentstyle.css"],
+     "js": ["contentscript.js"]
+   }],
+-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
++  "content_security_policy": "script-src 'self' 'unsafe-eval' chrome-extension://hfjbmagddngcpeloejdejnfgbamkjaeg/ chrome-extension://aibcglbfblnogfjhbcmmpobjhnomhcdo/; object-src 'self'",
+   "file_browser_handlers": [{
+     "id": "open-as-pdf",
+     "default_title": "Open with PDF Viewer",
+diff -u3 -r build/chromium/options/options.html build-my/chromium/options/options.html
+--- build/chromium/options/options.html	2020-08-29 16:54:43.664848100 +0800
++++ build-my/chromium/options/options.html	2020-08-29 17:33:42.589820800 +0800
+@@ -28,6 +28,7 @@
+   margin: 0.65em 0;
+ }
+ </style>
++<script src="../content/web/vimium-c-injector.js"></script>
+ </head>
+ <body>
+ <div id="settings-boxes"></div>
+diff -u3 -r build/chromium/pdfHandler.html build-my/chromium/pdfHandler.html
+--- build/chromium/pdfHandler.html	2020-08-29 16:54:31.710391800 +0800
++++ build-my/chromium/pdfHandler.html	2020-08-29 17:30:30.360103200 +0800
+@@ -21,4 +21,3 @@
+ <script src="pdfHandler-vcros.js"></script>
+ <script src="pageAction/background.js"></script>
+ <script src="suppress-update.js"></script>
+-<script src="telemetry.js"></script>
+diff -u3 -r build/chromium/preferences_schema.json build-my/chromium/preferences_schema.json
+--- build/chromium/preferences_schema.json	2020-08-29 16:54:45.595172600 +0800
++++ build-my/chromium/preferences_schema.json	2020-08-29 17:29:03.204535600 +0800
+@@ -133,12 +133,6 @@
+       "type": "boolean",
+       "default": false
+     },
+-    "disableTelemetry": {
+-      "title": "Disable telemetry",
+-      "type": "boolean",
+-      "description": "Whether to prevent the extension from reporting the extension and browser version to the extension developers.",
+-      "default": false
+-    },
+     "renderer": {
+       "type": "string",
+       "enum": [
+Only in build/chromium/: telemetry.js
