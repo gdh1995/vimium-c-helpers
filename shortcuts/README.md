@@ -13,10 +13,10 @@
 This web extension provides 32 global shortcut placeholders,
 and it will forward all shortcut messages to another (configurable) extension.
 
-[阅读中文介绍 (description in Chinese) 。](
-  https://github.com/gdh1995/vimium-c-helpers/blob/master/shortcuts/README_zh.md)
+[阅读中文介绍](README_zh.md)（description in Chinese）。
 
-The common usage of this extension is to forward all shortcuts to [Vimium C](https://github.com/gdh1995/vimium-c),
+The common usage of this extension is to forward all shortcuts to [Vimium C - All by Keyboard](
+  https://github.com/gdh1995/vimium-c),
 and then you may trigger Vimium C's tens of commands easily, without taking care of what modes you're currently in.
 
 For example, if you:
@@ -55,7 +55,7 @@ __<span style="color: #2f508e;">Vim</span>ium <span style="color: #a55e18;">C</s
 This project: Copyright (c) Dahan Gong.
 See the [MIT LICENSE](LICENSE.txt) for details.
 
-* [Vimium C](https://github.com/gdh1995/vimium-c):
+* [Vimium C - All by Keyboard](https://github.com/gdh1995/vimium-c):
   Copyright (c) 2014-2020 Dahan Gong, Phil Crosby, Ilya Sukhar.
   [MIT-licensed](https://github.com/philc/vimium/blob/master/MIT-LICENSE.txt).
 * The orange in icon is from https://pixabay.com/vectors/orange-fruit-mandarin-citrus-fruit-158258/

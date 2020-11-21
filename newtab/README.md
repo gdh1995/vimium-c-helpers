@@ -13,10 +13,11 @@
 This web extension takes over your browser's new tab settings,
 and it can move the focus of a new tab from address bar to page content.
 
-This extension runs Vimium C's content scripts on its newtab page by default,
+This extension runs [Vimium C - All by Keyboard](
+  https://github.com/gdh1995/vimium-c)'s content scripts on its newtab page by default,
 while this feature can be disabled by an advanced option.
 
-[阅读中文介绍 (description in Chinese) 。](https://github.com/gdh1995/vimium-c-helpers/blob/master/newtab/README_zh.md)
+[阅读中文介绍](README_zh.md)（description in Chinese）。
 
 # Release Notes
 
@@ -52,7 +53,7 @@ __<span style="color: #2f508e;">Vim</span>ium <span style="color: #a55e18;">C</s
 This project: Copyright (c) Dahan Gong.
 See the [MIT LICENSE](LICENSE.txt) for details.
 
-* [Vimium C](https://github.com/gdh1995/vimium-c):
+* [Vimium C - All by Keyboard](https://github.com/gdh1995/vimium-c):
   Copyright (c) 2014-2020 Dahan Gong, Phil Crosby, Ilya Sukhar.
   [MIT-licensed](https://github.com/philc/vimium/blob/master/MIT-LICENSE.txt).
 * The orange in icon is from https://pixabay.com/vectors/orange-fruit-mandarin-citrus-fruit-158258/

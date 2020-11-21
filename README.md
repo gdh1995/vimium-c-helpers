@@ -39,7 +39,8 @@ See the [MIT LICENSE](LICENSE.txt) for details.
 
 # Declaration for Applicable Regions / 关于适用区域的声明
 
-The [Vimium C](https://chrome.google.com/webstore/detail/vimium-c-all-by-keyboard/hfjbmagddngcpeloejdejnfgbamkjaeg)
+The [Vimium C - All by Keyboard](
+      https://chrome.google.com/webstore/detail/vimium-c-all-by-keyboard/hfjbmagddngcpeloejdejnfgbamkjaeg)
     and other extensions published by [gdh1995](https://github.com/gdh1995)
     are available for all people in *"all regions"*
     of Chrome Web Store, Microsoft Edge Addons and some other markets.
@@ -48,7 +49,8 @@ This behavior is only to make these extensions easier to use, but<br>
     that "Taiwan" can be parallel to "China",
     which was an **inappropriate** status quo in the stores' pages on 2019-11-16.
 
-[Vimium C](https://chrome.google.com/webstore/detail/vimium-c-all-by-keyboard/hfjbmagddngcpeloejdejnfgbamkjaeg)
+[Vimium C - 全键盘操作浏览器](
+    https://chrome.google.com/webstore/detail/vimium-c-all-by-keyboard/hfjbmagddngcpeloejdejnfgbamkjaeg)
 和 [gdh1995](https://github.com/gdh1995) 发布的其他扩展，在被发布到“Chrome 网上应用店”和“微软 Edge
 浏览器插件商店”等商店上时，均已向*所有地区*的所有人公开。
 但这个行为只是为了让这些插件更容易使用，**并不代表或者暗示**作者 gdh1995 “同意或者不反对”“台湾”一词可以同“中国”并列。
