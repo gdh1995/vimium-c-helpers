@@ -9,7 +9,7 @@
   "saved": { "message": "Saved" },
   "saveOpt": { "message": "Save Options" },
   "invalidId": { "message": "Invalid extension ID: \"$1\"." },
-  "noExtension": { "message": "Didn't find the extension ID of which is \"$1\"." },
+  "noExtension": { "message": "Didn't find the extension whose ID is \"$1\"." },
   "connectionFail": { "message": "Can not connect to the extension: \"$1\"." },
   "targetExt": { "message": "target extension" },
   "addID": { "message": "Please add this extension ID to $1's allow list" },

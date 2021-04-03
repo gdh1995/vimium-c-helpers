@@ -133,7 +133,7 @@ function testExtensionInjection(doInject) {
       msg = typeof msg === "object" ? JSON.stringify(msg) : msg + "";
       if (msg.toLowerCase().indexOf("invalid extension id") >= 0) {
         msg = trans("invalidId", [targetExtensionId]);
-      } else if (msg.indexOf("extension is undefined") >= 0) {
+      } else if (msg.indexOf("extension is undefined") >= 0 || msg.indexOf("An unexpected error occurred") >= 0) {
         msg = trans("noExtension", [targetExtensionId]);
       } else if (msg.indexOf("establish connection") >= 0) {
         var str1 = targetExtensionId !== VimiumCId ? targetExtensionId : "Vimium C";
