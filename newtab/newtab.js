@@ -43,3 +43,9 @@ isRedirecting_ ? isNotChrome_ && localStorage.setOpener ? chrome_.tabs.query({cu
 : useLocation_ ? document.location.href = url_ : useTabs([]) : loadExtension_();
 
 !isNotChrome_ && focusContent_ && isRedirecting_ && close();
+
+// HTML media attribute doesn't work in Fiefox,
+// so colorscheme must be checked in js
+if(window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  document.head.insertAdjacentHTML("beforeend", "<style>body{background:#000}</style>")
+}
