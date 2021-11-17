@@ -31,7 +31,8 @@
     "open_in_tab": false
   },
   "permissions": [
-    "chrome://favicon/"
+    "chrome://favicon/",
+    "storage"
   ],
   "update_url": "https://clients2.google.com/service/update2/crx",
   "version": "1.3.0",
