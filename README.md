@@ -1,4 +1,4 @@
-Some helper extensions for Vimium C, made by [gdh1995](https://github.com/gdh1995) and under MIT license.
+Some helper extensions for Vimium C, made by [Gong Dahan (gdh1995)](https://github.com/gdh1995) and under MIT license.
 
 <a name="donate"></a><a name="donating"></a><a name="donation"></a>
 
@@ -16,7 +16,7 @@ Vimium C 是一款开源的浏览器扩展程序，任何人都可以安装使�
     https://opencollective.com/vimium-c)
 或 [PayPal](https://www.paypal.me/gdh1995) 无偿赠与他一小笔钱。谢谢您的支持！
 
-A donation list is in / 捐赠列表详见: https://github.com/gdh1995/vimium-c/wiki/Donation-List .
+A partial donation list is in / 部分捐赠列表详见: https://github.com/gdh1995/vimium-c/wiki/Donation-List .
 
 <img width="240" alt="gdh1995 的支付宝二维码" src="https://gdh1995.cn/alipay-recv-money.png"
   /> <img width="240" alt="gdh1995 的微信赞赏码" src="https://gdh1995.cn/wechat-recv-money.png"
@@ -24,10 +24,10 @@ A donation list is in / 捐赠列表详见: https://github.com/gdh1995/vimium-c/
 
 # Thanks & Licenses
 
-Vimium C: Copyright (c) Dahan Gong, Phil Crosby, Ilya Sukhar.
-See the [MIT LICENSE](https://github.com/gdh1995/vimium-c/blob/master/LICENSE.txt) for details.
+Vimium C: Copyright (c) 2014-2023 Gong Dahan, Phil Crosby, Ilya Sukhar.
+See the [LICENSE](https://github.com/gdh1995/vimium-c/blob/master/LICENSE.txt) file for details.
 
-Vimium C helpers: Copyright (c) Dahan Gong.
+Vimium C helpers: Copyright (c) Gong Dahan.
 See the [MIT LICENSE](LICENSE.txt) for details.
 
 * [TypeScript](https://github.com/Microsoft/TypeScript):

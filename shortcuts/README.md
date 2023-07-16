@@ -52,12 +52,12 @@ __<span style="color: #2f508e;">Vim</span>ium <span style="color: #a55e18;">C</s
 
 # Thanks & Licenses
 
-This project: Copyright (c) Dahan Gong.
+This project: Copyright (c) Gong Dahan.
 See the [MIT LICENSE](LICENSE.txt) for details.
 
 * [Vimium C - All by Keyboard](https://github.com/gdh1995/vimium-c):
-  Copyright (c) 2014-2020 Dahan Gong, Phil Crosby, Ilya Sukhar.
-  [MIT-licensed](https://github.com/philc/vimium/blob/master/MIT-LICENSE.txt).
+  Copyright (c) 2014-2023 Gong Dahan, Phil Crosby, Ilya Sukhar.
+  It's `MIT-licensed-v1` branch is [MIT-licensed](https://github.com/gdh1995/vimium-c/blob/master/LICENSE.txt).
 * The orange in icon is from https://pixabay.com/vectors/orange-fruit-mandarin-citrus-fruit-158258/
 * The arrow at bottom right corner in icon is based on an icon designed by dAKirby309
     from http://www.iconarchive.com/show/simply-styled-icons-by-dakirby309/Shortcuts-icon.html

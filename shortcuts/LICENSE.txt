@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2019-present Dahan Gong.
+Copyright (c) 2019-present Gong Dahan.
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
