@@ -53,7 +53,7 @@ __<span style="color: #2f508e;">Vim</span>ium <span style="color: #a55e18;">C</s
 # Thanks & Licenses
 
 This project: Copyright (c) Gong Dahan.
-See the [MIT LICENSE](LICENSE.txt) for details.
+See the [MIT license](LICENSE.txt) for details.
 
 * [Vimium C - All by Keyboard](https://github.com/gdh1995/vimium-c):
   Copyright (c) 2014-2023 Gong Dahan, Phil Crosby, Ilya Sukhar.

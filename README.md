@@ -25,10 +25,10 @@ A partial donation list is in / 部分捐赠列表详见: https://github.com/gdh
 # Thanks & Licenses
 
 Vimium C: Copyright (c) 2014-2023 Gong Dahan, Phil Crosby, Ilya Sukhar.
-See the [LICENSE](https://github.com/gdh1995/vimium-c/blob/master/LICENSE.txt) file for details.
+See the [Apache-2.0 license and MIT license](https://github.com/gdh1995/vimium-c/blob/master/LICENSE.txt) for details.
 
 Vimium C helpers: Copyright (c) Gong Dahan.
-See the [MIT LICENSE](LICENSE.txt) for details.
+See the [MIT license](LICENSE.txt) for details.
 
 * [TypeScript](https://github.com/Microsoft/TypeScript):
     and modified `es.d.ts`, `es/*`, `dom.d.ts` and `chrome.d.ts` in `types/`:
